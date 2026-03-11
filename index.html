@@ -1,0 +1,1157 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>O Paradoxo da FURIA — Análise Técnica · CBLOL Cup 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  /* Paleta creme — editorial refinado */
+  --paper:    #f5f0e8;
+  --paper2:   #ede7da;
+  --paper3:   #e6dfd0;
+  --paper4:   #ddd5c2;
+  --paper5:   #cfc6b0;
+
+  --ink:      #1a1510;
+  --ink2:     #2e2820;
+  --ink3:     #4a4235;
+  --dim:      #7a6f5e;
+  --muted:    #a89f8e;
+  --hairline: rgba(26,21,16,.10);
+  --hairline2:rgba(26,21,16,.18);
+
+  --red:      #b83225;
+  --red2:     #d44033;
+  --red-tint: rgba(184,50,37,.08);
+  --red-mid:  rgba(184,50,37,.15);
+
+  --blue:     #1e4fa8;
+  --blue-tint:rgba(30,79,168,.08);
+  --blue-mid: rgba(30,79,168,.14);
+
+  --gold:     #8a5e00;
+  --gold-tint:rgba(138,94,0,.08);
+  --gold-mid: rgba(138,94,0,.14);
+
+  --green:    #1a6b3c;
+  --green-tint:rgba(26,107,60,.08);
+  --green-mid: rgba(26,107,60,.14);
+
+  --f-display: 'Playfair Display', Georgia, serif;
+  --f-body:    'DM Sans', sans-serif;
+  --f-mono:    'DM Mono', monospace;
+}
+
+html { scroll-behavior: smooth; }
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--f-body);
+  font-size: 15px;
+  line-height: 1.7;
+  overflow-x: hidden;
+}
+
+/* ─── SCROLL REVEAL ─── */
+.r { opacity: 0; transform: translateY(18px); transition: opacity .55s ease, transform .55s ease; }
+.r.v { opacity: 1; transform: translateY(0); }
+
+/* ─── HERO ─── */
+.hero {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  position: relative;
+  overflow: hidden;
+  border-bottom: 1px solid var(--hairline2);
+}
+.hero-left {
+  padding: 80px 7vw 80px 7vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  position: relative;
+  z-index: 2;
+}
+.hero-right {
+  background: var(--paper2);
+  position: relative;
+  overflow: hidden;
+  border-left: 1px solid var(--hairline2);
+}
+.hero-right-pattern {
+  position: absolute; inset: 0;
+  background-image:
+    repeating-linear-gradient(0deg, var(--hairline) 0px, var(--hairline) 1px, transparent 1px, transparent 48px),
+    repeating-linear-gradient(90deg, var(--hairline) 0px, var(--hairline) 1px, transparent 1px, transparent 48px);
+}
+.hero-right-data {
+  position: absolute; inset: 0;
+  display: flex; flex-direction: column;
+  justify-content: center; align-items: center;
+  gap: 2px;
+  padding: 60px 40px;
+}
+.hrd-item {
+  width: 100%;
+  display: flex; justify-content: space-between; align-items: baseline;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--hairline);
+}
+.hrd-item:first-child { border-top: 1px solid var(--hairline); }
+.hrd-label { font-family: var(--f-mono); font-size: 9px; letter-spacing: .18em; text-transform: uppercase; color: var(--muted); }
+.hrd-val { font-family: var(--f-display); font-size: 2rem; font-weight: 900; color: var(--ink); line-height: 1; }
+.hrd-val.accent-r { color: var(--red); }
+.hrd-val.accent-b { color: var(--blue); }
+.hrd-val.accent-g { color: var(--gold); }
+.hrd-sub { font-family: var(--f-mono); font-size: 8px; color: var(--muted); letter-spacing: .1em; margin-top: 2px; }
+
+.hero-eyebrow {
+  font-family: var(--f-mono); font-size: 9px; letter-spacing: .22em; text-transform: uppercase;
+  color: var(--muted); margin-bottom: 40px;
+  display: flex; align-items: center; gap: 10px;
+}
+.hero-eyebrow::before {
+  content: ''; display: block; width: 28px; height: 1px; background: var(--red);
+}
+.hero-kicker {
+  font-family: var(--f-body); font-weight: 300; font-size: 13px;
+  letter-spacing: .06em; color: var(--dim); text-transform: uppercase;
+  margin-bottom: 20px;
+}
+.hero-title {
+  font-family: var(--f-display); font-weight: 900;
+  font-size: clamp(3.5rem, 7vw, 6.5rem);
+  line-height: .92; letter-spacing: -.02em;
+  margin-bottom: 32px;
+}
+.hero-title .t1 { display: block; color: var(--ink); }
+.hero-title .t2 {
+  display: block;
+  color: transparent;
+  -webkit-text-stroke: 2px var(--red);
+  font-style: italic;
+}
+.hero-desc {
+  font-size: 14px; color: var(--dim); line-height: 1.75;
+  max-width: 420px; margin-bottom: 48px;
+  border-left: 2px solid var(--red-mid);
+  padding-left: 16px;
+}
+.hero-meta {
+  display: flex; gap: 0; border: 1px solid var(--hairline2);
+}
+.hm { padding: 12px 20px; border-right: 1px solid var(--hairline2); }
+.hm:last-child { border-right: none; }
+.hm-l { font-family: var(--f-mono); font-size: 8px; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); margin-bottom: 3px; }
+.hm-v { font-family: var(--f-body); font-size: 13px; font-weight: 500; color: var(--ink); }
+
+/* ─── LAYOUT ─── */
+.wrap { max-width: 1100px; margin: 0 auto; padding: 0 7vw; }
+.s { padding: 96px 0; border-bottom: 1px solid var(--hairline); }
+.s:last-of-type { border-bottom: none; }
+
+.s-head { display: grid; grid-template-columns: 52px 1fr; gap: 24px; align-items: start; margin-bottom: 56px; }
+.s-num { font-family: var(--f-mono); font-size: 10px; color: var(--muted); padding-top: 8px; letter-spacing: .1em; }
+.s-title {
+  font-family: var(--f-display); font-weight: 900;
+  font-size: clamp(2rem, 4vw, 3rem);
+  line-height: .96; letter-spacing: -.01em;
+}
+.s-title .acc-r { color: var(--red); }
+.s-title .acc-b { color: var(--blue); }
+.s-title .acc-g { color: var(--green); }
+.s-title .acc-gold { color: var(--gold); }
+.s-title em { font-style: italic; }
+.s-sub { margin-top: 10px; font-size: 13px; font-weight: 400; color: var(--dim); }
+
+.sec-label {
+  font-family: var(--f-mono); font-size: 9px; letter-spacing: .18em;
+  text-transform: uppercase; color: var(--muted);
+  margin-bottom: 20px; margin-top: 44px;
+  display: flex; align-items: center; gap: 10px;
+}
+.sec-label::after { content: ''; flex: 1; height: 1px; background: var(--hairline); }
+.sec-label:first-child { margin-top: 0; }
+
+/* ─── KPI ROW ─── */
+.kpi-row { display: grid; grid-template-columns: repeat(4,1fr); gap: 1px; background: var(--hairline2); border: 1px solid var(--hairline2); margin-bottom: 40px; }
+.kpi { background: var(--paper); padding: 28px 22px; position: relative; overflow: hidden; }
+.kpi::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 2px; }
+.kpi.red::after { background: var(--red); }
+.kpi.blue::after { background: var(--blue); }
+.kpi.gold::after { background: var(--gold); }
+.kpi.green::after { background: var(--green); }
+.kpi-val { font-family: var(--f-display); font-size: 2.8rem; font-weight: 900; line-height: 1; letter-spacing: -.02em; }
+.kpi.red .kpi-val { color: var(--red); }
+.kpi.blue .kpi-val { color: var(--blue); }
+.kpi.gold .kpi-val { color: var(--gold); }
+.kpi.green .kpi-val { color: var(--green); }
+.kpi-label { font-size: 12px; color: var(--dim); margin-top: 10px; line-height: 1.4; }
+.kpi-sub { font-family: var(--f-mono); font-size: 8.5px; color: var(--muted); margin-top: 6px; letter-spacing: .06em; }
+
+/* ─── ALERT ─── */
+.alert {
+  border-left: 3px solid var(--red);
+  background: var(--red-tint);
+  padding: 20px 24px; margin: 32px 0;
+  border-radius: 0 4px 4px 0;
+}
+.alert.blue { border-color: var(--blue); background: var(--blue-tint); }
+.alert.gold { border-color: var(--gold); background: var(--gold-tint); }
+.alert.green { border-color: var(--green); background: var(--green-tint); }
+.alert-tag { font-family: var(--f-mono); font-size: 8.5px; letter-spacing: .15em; text-transform: uppercase; color: var(--red); margin-bottom: 8px; }
+.alert.blue .alert-tag { color: var(--blue); }
+.alert.gold .alert-tag { color: var(--gold); }
+.alert.green .alert-tag { color: var(--green); }
+.alert p { font-size: 14px; color: var(--dim); line-height: 1.65; }
+.alert p strong { color: var(--ink); }
+
+/* ─── TABLES ─── */
+.tbl-wrap { overflow-x: auto; border: 1px solid var(--hairline2); margin: 20px 0; }
+table { width: 100%; border-collapse: collapse; font-size: 13px; }
+thead th {
+  background: var(--paper2); padding: 11px 14px; text-align: left;
+  font-family: var(--f-mono); font-size: 8.5px; letter-spacing: .12em;
+  text-transform: uppercase; color: var(--muted); border-bottom: 1px solid var(--hairline2);
+  white-space: nowrap;
+}
+tbody td { padding: 10px 14px; border-bottom: 1px solid var(--hairline); color: var(--ink); vertical-align: middle; }
+tbody tr:last-child td { border-bottom: none; }
+tbody tr:hover td { background: var(--paper2); }
+.win-row td { background: var(--green-tint); }
+.win-row:hover td { background: var(--green-mid) !important; }
+td.win { color: var(--green); font-weight: 600; }
+td.loss { color: var(--red); font-weight: 600; }
+td.pos { color: var(--green); font-weight: 600; }
+td.neg { color: var(--red); }
+td.gold-c { color: var(--gold); font-weight: 700; }
+td.mono { font-family: var(--f-mono); font-size: 11px; }
+td.bold { font-weight: 600; }
+td.hero-cell { color: var(--gold); font-weight: 700; font-size: 13px; }
+td.dim-c { color: var(--muted); font-size: 12px; }
+.furia-row td { background: var(--blue-tint); }
+.red-row td { background: var(--red-tint); }
+.furia-row td.bold { color: var(--blue); }
+.red-row td.bold { color: var(--red); }
+
+/* ─── HBAR ─── */
+.hbar-chart { display: flex; flex-direction: column; gap: 6px; margin: 8px 0 28px; }
+.hbar-row { display: grid; grid-template-columns: 110px 1fr 52px; align-items: center; gap: 12px; }
+.hbar-label { font-size: 12px; color: var(--ink); font-weight: 500; text-align: right; }
+.hbar-label span { color: var(--muted); font-weight: 400; font-size: 10px; }
+.hbar-track { background: var(--paper3); height: 22px; border-radius: 2px; overflow: hidden; position: relative; }
+.hbar-fill { height: 100%; width: 0; transition: width .8s cubic-bezier(.16,1,.3,1); border-radius: 2px; display: flex; align-items: center; padding-left: 8px; font-family: var(--f-mono); font-size: 9.5px; color: var(--ink); opacity: .85; white-space: nowrap; overflow: hidden; }
+.hbar-fill.b  { background: linear-gradient(90deg, var(--blue-mid) 0%, var(--blue) 100%); color: #fff; }
+.hbar-fill.r  { background: linear-gradient(90deg, var(--red-mid) 0%, var(--red) 100%); color: #fff; }
+.hbar-fill.g  { background: linear-gradient(90deg, var(--gold-mid) 0%, var(--gold) 100%); color: #fff; }
+.hbar-fill.gr { background: linear-gradient(90deg, rgba(160,150,130,.25) 0%, var(--muted) 100%); }
+.hbar-fill.gn { background: linear-gradient(90deg, var(--green-mid) 0%, var(--green) 100%); color: #fff; }
+.hbar-val { font-family: var(--f-mono); font-size: 12px; color: var(--ink); text-align: left; font-weight: 500; }
+
+/* ─── METODOLOGIA ─── */
+.meto-steps { display: grid; grid-template-columns: repeat(3,1fr); gap: 1px; background: var(--hairline2); border: 1px solid var(--hairline2); margin-bottom: 36px; }
+.meto-step { background: var(--paper); padding: 24px 20px; }
+.ms-num { font-family: var(--f-mono); font-size: 9px; color: var(--gold); letter-spacing: .15em; margin-bottom: 10px; }
+.ms-title { font-family: var(--f-display); font-size: 1.1rem; font-weight: 700; margin-bottom: 10px; color: var(--ink); }
+.ms-text { font-size: 13px; color: var(--dim); line-height: 1.6; }
+.ms-text .mono { font-family: var(--f-mono); font-size: 10.5px; color: var(--blue); }
+
+/* ─── CONFRONTO DIRETO ─── */
+.matchup-block { margin-top: 32px; }
+.mb-label {
+  font-family: var(--f-mono); font-size: 9px; letter-spacing: .15em; text-transform: uppercase;
+  color: var(--muted); padding: 8px 14px;
+  background: var(--paper2); border: 1px solid var(--hairline2);
+  margin-bottom: 2px;
+}
+.mb-label.win { color: var(--green); background: var(--green-tint); border-color: rgba(26,107,60,.15); }
+.mu-row {
+  display: grid; grid-template-columns: 1fr 100px 1fr;
+  background: var(--paper); border: 1px solid var(--hairline); border-top: none;
+  padding: 10px 14px; align-items: center; gap: 8px;
+}
+.mu-row.win-mu { background: var(--green-tint); }
+.mu-left { display: flex; align-items: center; gap: 8px; }
+.mu-right { display: flex; align-items: center; justify-content: flex-end; gap: 8px; }
+.mu-name { font-weight: 600; font-size: 13.5px; }
+.mu-name.furia { color: var(--blue); }
+.mu-name.red { color: var(--red); }
+.mu-pos-chip {
+  font-family: var(--f-mono); font-size: 8px; padding: 2px 6px; border-radius: 2px; letter-spacing: .08em;
+}
+.chip-top { background: var(--gold-tint); color: var(--gold); }
+.chip-jng { background: var(--green-tint); color: var(--green); }
+.chip-mid { background: var(--blue-tint); color: var(--blue); }
+.chip-bot { background: var(--red-tint); color: var(--red); }
+.chip-sup { background: rgba(120,0,180,.07); color: #6b20a0; }
+.mu-center { text-align: center; }
+.mu-pos { font-family: var(--f-mono); font-size: 8px; color: var(--muted); letter-spacing: .1em; text-transform: uppercase; margin-bottom: 3px; }
+.mu-margin { font-family: var(--f-display); font-size: 1.3rem; font-weight: 700; line-height: 1; }
+.mu-margin.pos { color: var(--blue); }
+.mu-margin.neg { color: var(--red); }
+.mu-note { font-family: var(--f-mono); font-size: 11px; color: var(--muted); }
+
+/* ─── BARON SPLIT ─── */
+.baron-split { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--hairline2); border: 1px solid var(--hairline2); margin: 36px 0; }
+.baron-card { padding: 36px 28px; background: var(--paper); }
+.bc-num { font-family: var(--f-display); font-size: 4rem; font-weight: 900; line-height: 1; margin-bottom: 12px; }
+.bc-num.bad { color: var(--red); }
+.bc-num.good { color: var(--green); }
+.bc-label { font-size: 14px; color: var(--dim); line-height: 1.6; }
+
+/* ─── GOLD DIFF CHART ─── */
+.gd-wrap { background: var(--paper2); border: 1px solid var(--hairline2); padding: 28px; margin: 8px 0 24px; }
+.gd-title { font-family: var(--f-mono); font-size: 9px; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); margin-bottom: 20px; }
+svg text { font-family: 'DM Mono', monospace; }
+
+/* ─── HIERARQUIA ─── */
+.hier-grid { display: flex; flex-direction: column; gap: 1px; background: var(--hairline2); border: 1px solid var(--hairline2); margin: 28px 0; }
+.hier-row { display: grid; grid-template-columns: 1fr 200px 1fr; align-items: center; background: var(--paper); padding: 24px 20px; gap: 16px; }
+.hier-badge { text-align: center; }
+.hb-team { font-family: var(--f-display); font-size: 1.8rem; font-weight: 900; line-height: 1; }
+.hb-team.r { color: var(--red); }
+.hb-team.b { color: var(--blue); }
+.hb-team.g { color: var(--gold); }
+.hb-label { font-family: var(--f-mono); font-size: 8px; color: var(--muted); letter-spacing: .12em; text-transform: uppercase; margin-top: 4px; }
+.hier-stats { display: flex; flex-direction: column; gap: 6px; }
+.hier-stats.right { text-align: right; }
+.hs { font-size: 12px; color: var(--dim); }
+.hs strong { color: var(--ink); font-weight: 600; }
+
+/* ─── VISÃO / WARD KILLS ─── */
+.vis-grid { display: grid; grid-template-columns: repeat(7,1fr); gap: 4px; margin: 8px 0 16px; }
+.vis-col { display: flex; flex-direction: column; align-items: center; gap: 4px; }
+.vis-label { font-family: var(--f-mono); font-size: 7.5px; color: var(--muted); letter-spacing: .06em; text-align: center; }
+.vis-bar-group { display: flex; align-items: flex-end; gap: 3px; height: 70px; }
+.vis-bar { width: 16px; border-radius: 2px 2px 0 0; }
+.vb-f { background: var(--blue); opacity: .8; }
+.vb-r { background: var(--red); opacity: .6; }
+.vis-nums { display: flex; flex-direction: column; align-items: center; gap: 1px; }
+.vn-f { font-family: var(--f-mono); font-size: 8.5px; color: var(--blue); font-weight: 500; }
+.vn-r { font-family: var(--f-mono); font-size: 8.5px; color: var(--red); }
+.vis-result { font-family: var(--f-mono); font-size: 7px; letter-spacing: .08em; font-weight: 500; padding: 2px 5px; border-radius: 2px; }
+.vwin { color: var(--green); background: var(--green-tint); }
+.vloss { color: var(--red); background: var(--red-tint); }
+.vis-legend { display: flex; gap: 20px; align-items: center; margin-top: 8px; }
+.vleg { display: flex; align-items: center; gap: 6px; font-family: var(--f-mono); font-size: 9px; color: var(--muted); letter-spacing: .05em; }
+.vleg-dot { width: 10px; height: 10px; border-radius: 2px; }
+
+/* ─── EVIDÊNCIA QUALITATIVA ─── */
+.ev-list { display: flex; flex-direction: column; gap: 1px; background: var(--hairline2); border: 1px solid var(--hairline2); margin-top: 12px; }
+.ev { display: grid; grid-template-columns: 80px 1fr; background: var(--paper); }
+.ev.ev-win { background: var(--green-tint); }
+.ev-side { padding: 28px 16px; border-right: 1px solid var(--hairline); display: flex; flex-direction: column; align-items: center; justify-content: flex-start; gap: 8px; padding-top: 32px; }
+.ev-game { font-family: var(--f-display); font-size: 2rem; font-weight: 900; color: var(--ink); line-height: 1; }
+.ev-win .ev-game { color: var(--green); }
+.ev-badge { font-family: var(--f-mono); font-size: 7.5px; letter-spacing: .1em; padding: 3px 6px; border-radius: 2px; }
+.eb-l { background: var(--red-tint); color: var(--red); }
+.eb-w { background: var(--green-tint); color: var(--green); }
+.ev-body { padding: 24px 28px; }
+.ev-timing { font-family: var(--f-mono); font-size: 8.5px; color: var(--muted); letter-spacing: .1em; margin-bottom: 8px; text-transform: uppercase; }
+.ev-title { font-family: var(--f-display); font-size: 1.05rem; font-weight: 700; color: var(--ink); margin-bottom: 12px; line-height: 1.3; }
+.ev-text { font-size: 13px; color: var(--dim); line-height: 1.7; }
+.ev-text strong { color: var(--ink); font-weight: 600; }
+
+/* ─── DELTA TABLE — novo elemento ─── */
+.delta-grid {
+  display: grid; grid-template-columns: repeat(5,1fr);
+  gap: 1px; background: var(--hairline2); border: 1px solid var(--hairline2); margin: 20px 0;
+}
+.dg-cell { background: var(--paper); padding: 18px 14px; }
+.dg-cell.header { background: var(--paper2); }
+.dg-player { font-weight: 600; font-size: 13px; }
+.dg-player.furia { color: var(--blue); }
+.dg-player.red { color: var(--red); }
+.dg-pos { font-family: var(--f-mono); font-size: 8px; color: var(--muted); letter-spacing: .08em; margin-bottom: 6px; }
+.dg-nota { font-family: var(--f-display); font-size: 1.6rem; font-weight: 900; line-height: 1; color: var(--ink); }
+.dg-vs { font-size: 11px; color: var(--dim); margin-top: 4px; }
+.dg-delta { font-family: var(--f-mono); font-size: 11px; font-weight: 500; margin-top: 3px; }
+.dg-delta.up { color: var(--green); }
+.dg-delta.down { color: var(--red); }
+.dg-delta.flat { color: var(--muted); }
+
+/* ─── RANKING TABLES ─── */
+.rank-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 20px; }
+.rank-table-wrap { border: 1px solid var(--hairline2); overflow: hidden; }
+.rank-table-title {
+  background: var(--paper2); padding: 10px 14px;
+  font-family: var(--f-mono); font-size: 9px; letter-spacing: .15em; text-transform: uppercase; color: var(--muted);
+  border-bottom: 1px solid var(--hairline2);
+}
+.rank-table-wrap table { margin: 0; }
+.rank-table-wrap .tbl-wrap { border: none; margin: 0; }
+.rank-num { font-family: var(--f-mono); font-size: 11px; color: var(--muted); }
+.rank-num.gold-rank { color: var(--gold); font-weight: 700; }
+td.rank-highlight-b { background: var(--blue-tint) !important; }
+td.rank-highlight-r { background: var(--red-tint) !important; }
+tr.rank-furia td { background: var(--blue-tint); }
+tr.rank-red td { background: var(--red-tint); }
+tr.rank-furia td.bold { color: var(--blue); }
+tr.rank-red td.bold { color: var(--red); }
+
+/* ─── FOOTER ─── */
+footer {
+  background: var(--paper2); border-top: 1px solid var(--hairline2);
+  padding: 48px 7vw; display: flex; justify-content: space-between; align-items: center;
+}
+.foot-brand { font-family: var(--f-display); font-size: 1.4rem; font-weight: 900; color: var(--ink); font-style: italic; }
+.foot-meta { font-family: var(--f-mono); font-size: 9px; color: var(--muted); letter-spacing: .1em; text-align: right; line-height: 1.7; }
+
+@media (max-width:900px) {
+  .hero { grid-template-columns: 1fr; }
+  .hero-right { display: none; }
+  .kpi-row { grid-template-columns: 1fr 1fr; }
+  .delta-grid { grid-template-columns: 1fr 1fr; }
+  .rank-grid { grid-template-columns: 1fr; }
+  .hier-row { grid-template-columns: 1fr; text-align: center; }
+  .vis-grid { grid-template-columns: repeat(4,1fr); }
+}
+</style>
+</head>
+<body>
+
+<!-- ══════════ HERO ══════════ -->
+<header class="hero">
+  <div class="hero-left">
+    <div class="hero-eyebrow">Relatório de Análise · CBLOL Cup 2026</div>
+    <div class="hero-kicker">Bruno Bassetto · Parte I de II</div>
+    <h1 class="hero-title">
+      <span class="t1">O Paradoxo</span>
+      <span class="t2">da FURIA</span>
+    </h1>
+    <p class="hero-desc">Por que o melhor early game da região não se converte em vitórias contra a RED Canids, uma análise em dados quantitativos e evidências qualitativas de jogo.</p>
+    <div class="hero-meta">
+      <div class="hm"><div class="hm-l">Fonte</div><div class="hm-v">Oracle's Elixir 2026</div></div>
+      <div class="hm"><div class="hm-l">Escopo</div><div class="hm-v">30 jogos FURIA</div></div>
+      <div class="hm"><div class="hm-l">Confrontos</div><div class="hm-v">7 vs RED Canids</div></div>
+      <div class="hm"><div class="hm-l">Temporada</div><div class="hm-v">CBLOL + Americas Cup</div></div>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-right-pattern"></div>
+    <div class="hero-right-data">
+      <div class="hrd-item">
+        <div><div class="hrd-label">Baron Correlation</div><div class="hrd-sub">Baron = resultado · 7/7 jogos</div></div>
+        <div class="hrd-val accent-r">100%</div>
+      </div>
+      <div class="hrd-item">
+        <div><div class="hrd-label">GD@15 Médio Geral</div><div class="hrd-sub">Melhor early game da região</div></div>
+        <div class="hrd-val accent-b">+1085</div>
+      </div>
+      <div class="hrd-item">
+        <div><div class="hrd-label">GD@15 vs RED (derrotas)</div><div class="hrd-sub">Colapso no mid game</div></div>
+        <div class="hrd-val accent-r">−141</div>
+      </div>
+      <div class="hrd-item">
+        <div><div class="hrd-label">Aproveitamento Americas Cup</div><div class="hrd-sub">Campeã invicta</div></div>
+        <div class="hrd-val accent-g">8–0</div>
+      </div>
+      <div class="hrd-item">
+        <div><div class="hrd-label">Vitórias vs RED Canids</div><div class="hrd-sub">Inclui série eliminatória</div></div>
+        <div class="hrd-val accent-r">1/7</div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ══════════ 00 · RESUMO EXECUTIVO ══════════ -->
+<section class="s">
+<div class="wrap">
+  <div class="s-head r">
+    <div class="s-num">00</div>
+    <div>
+      <div class="s-title">Resumo <span class="acc-r">Executivo</span></div>
+      <div class="s-sub">O paradoxo em quatro números</div>
+    </div>
+  </div>
+
+  <div class="kpi-row r">
+    <div class="kpi gold">
+      <div class="kpi-val">~60%</div>
+      <div class="kpi-label">WR da FURIA vs RED em scrims</div>
+      <div class="kpi-sub">Vantagem nos treinos, colapso em jogos oficiais</div>
+    </div>
+    <div class="kpi blue">
+      <div class="kpi-val">8–0</div>
+      <div class="kpi-label">Aproveitamento na Americas Cup</div>
+      <div class="kpi-sub">Campeã invicta do torneio</div>
+    </div>
+    <div class="kpi red">
+      <div class="kpi-val">1/7</div>
+      <div class="kpi-label">Vitórias vs RED Canids (oficial)</div>
+      <div class="kpi-sub">Inclui série eliminatória dos playoffs</div>
+    </div>
+    <div class="kpi gold">
+      <div class="kpi-val">+1085</div>
+      <div class="kpi-label">GD@15 médio no CBLOL Cup</div>
+      <div class="kpi-sub">Melhor early game da região</div>
+    </div>
+  </div>
+
+  <div class="alert gold r">
+    <div class="alert-tag">O dado que não aparece no Oracle's Elixir — WR em scrims</div>
+    <p>A FURIA registra aproveitamento próximo de 60% contra a RED em scrims, ou seja, tem <em>vantagem</em> nos treinos. O colapso para 1/7 em jogos oficiais é, portanto, ainda mais revelador: <strong>a FURIA não perde por falta de capacidade técnica, mas por incapacidade de reproduzir o mesmo nível nos momentos de maior pressão</strong>. Isso descarta definitivamente a hipótese de simples diferença de elenco e aponta para um problema de sistema e gestão da transição para o mid game, especificamente no controle de Baron.</p>
+  </div>
+
+  <div class="alert r">
+    <div class="alert-tag">Hipótese original vs realidade</div>
+    <p>A hipótese inicial, de que a RED adapta picks/bans mais rápido entre jogos, identifica um sintoma real, mas não a causa raiz. Os dados apontam para um problema anterior ao draft: <strong>a FURIA não possui um sistema consolidado de conversão de vantagem de early game em controle de Baron Nashor</strong>. A RED venceu 6 Barons nos 7 jogos. Os 6 Barons da RED correspondem às 6 derrotas da FURIA. O único Baron da FURIA corresponde à única vitória.</p>
+  </div>
+</div>
+</section>
+
+<!-- ══════════ 01 · METODOLOGIA ══════════ -->
+<section class="s">
+<div class="wrap">
+  <div class="s-head r">
+    <div class="s-num">01</div>
+    <div>
+      <div class="s-title">Meto<span class="acc-b">dologia</span></div>
+      <div class="s-sub">Sistema de notas por jogador · Oracle's Elixir 2026</div>
+    </div>
+  </div>
+
+  <p class="r" style="color:var(--dim);max-width:680px;margin-bottom:32px;font-size:14px;line-height:1.75">Cada jogador recebe uma nota de 0 a 10 por partida, calculada a partir de suas métricas comparadas a <strong style="color:var(--ink)">todos os 10 jogadores do mesmo jogo</strong> (não apenas os da mesma posição). As métricas e pesos são calibrados por posição. A nota final por jogador é a <strong style="color:var(--ink)">mediana</strong> de todas as suas notas por jogo, resistente a outliers e capturando o jogador típico, não o melhor ou pior momento.</p>
+
+  <div class="meto-steps r">
+    <div class="meto-step">
+      <div class="ms-num">ETAPA 01 · VALOR BRUTO</div>
+      <div class="ms-title">Cálculo das métricas</div>
+      <div class="ms-text">Métricas absolutas (kills, gold, dano) são normalizadas por minuto de jogo para eliminar o viés de partidas longas ou curtas. Ex.: <span class="mono">DPM = damagetochampions / gamelength_min</span></div>
+    </div>
+    <div class="meto-step">
+      <div class="ms-num">ETAPA 02 · NORMALIZAÇÃO 0–10</div>
+      <div class="ms-title">Pool geral do jogo</div>
+      <div class="ms-text">O valor de cada métrica é normalizado contra <strong>os 10 jogadores do jogo</strong>. O maior valor recebe 10, o menor recebe 0. Fórmula: <span class="mono">(v − min) / (max − min) × 10</span>. As notas não são comparáveis entre lanes.</div>
+    </div>
+    <div class="meto-step">
+      <div class="ms-num">ETAPA 03 · PONDERAÇÃO + MEDIANA</div>
+      <div class="ms-title">Nota final</div>
+      <div class="ms-text">Nota do jogo = soma das métricas normalizadas × peso por posição. Nota final do jogador = <strong>mediana</strong> de todas as suas notas por jogo. O desvio padrão complementa medindo consistência.</div>
+    </div>
+  </div>
+
+  <div class="sec-label r">Dicionário de métricas</div>
+  <div class="tbl-wrap r">
+    <table>
+      <thead><tr><th>Métrica</th><th>Cálculo</th><th>O que mede</th><th>Posições</th></tr></thead>
+      <tbody>
+        <tr><td class="bold">KDA</td><td class="mono">(kills+assists) / max(deaths,1)</td><td>Eficiência de combate. <span style="font-family:var(--f-mono);font-size:11px">max(deaths,1)</span> evita divisão por zero.</td><td class="mono">todas</td></tr>
+        <tr><td class="bold">GD@15</td><td class="mono">golddiffat15</td><td>Diferença de ouro vs oponente de lane aos 15min. Positivo = FURIA à frente.</td><td class="mono">top · jng · mid · bot</td></tr>
+        <tr><td class="bold">DPM</td><td class="mono">damagetochampions / min</td><td>Dano a campeões por minuto. Output ofensivo e presença em teamfights.</td><td class="mono">top · jng · mid · bot</td></tr>
+        <tr><td class="bold">CSPM</td><td class="mono">total_cs / min</td><td>Farm por minuto. Eficiência de recursos e controle de lane.</td><td class="mono">top · jng · mid · bot</td></tr>
+        <tr><td class="bold">Damage Share</td><td class="mono">damageshare (%)</td><td>% do dano total do time. Protagonismo ofensivo, elimina viés de composição.</td><td class="mono">top · mid · bot</td></tr>
+        <tr><td class="bold">Kill Participation</td><td class="mono">(kills+assists) / teamkills</td><td>Presença em plays e engajamentos. Crítico onde DPM não captura impacto.</td><td class="mono">jng · mid · bot · sup</td></tr>
+        <tr><td class="bold">VSPM</td><td class="mono">visionscore / min</td><td>Contribuição de visão por minuto. Wards, sweepers, controle de mapa.</td><td class="mono">jng · sup</td></tr>
+        <tr><td class="bold">WK/min</td><td class="mono">wardskilled / min</td><td>Wards destruídas por minuto. Capacidade de negar visão adversária.</td><td class="mono">jng · sup</td></tr>
+        <tr><td class="bold">CW/min</td><td class="mono">controlwardsbought / min</td><td>Control wards compradas por minuto. Comprometimento com cobertura de visão.</td><td class="mono">sup</td></tr>
+        <tr><td class="bold">Dmg Mitigado</td><td class="mono">damagemitigatedperminute</td><td>Dano absorvido por minuto. Presença física e proteção (top tanks). <em style="color:var(--muted)">Removido do support, penaliza enchanters sistematicamente.</em></td><td class="mono">top</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="sec-label r">Pesos por posição</div>
+  <div class="tbl-wrap r">
+    <table>
+      <thead><tr><th>Posição</th><th>Métrica principal</th><th>Peso</th><th>2ª métrica</th><th>Peso</th><th>3ª métrica</th><th>Peso</th></tr></thead>
+      <tbody>
+        <tr><td class="bold">Top</td><td>GD@15</td><td class="mono">20%</td><td>Dmg Mitigado</td><td class="mono">18%</td><td>DPM</td><td class="mono">17%</td></tr>
+        <tr><td class="bold">Jungle</td><td>Kill Participation</td><td class="mono">22%</td><td>KDA</td><td class="mono">18%</td><td>GD@15</td><td class="mono">15%</td></tr>
+        <tr><td class="bold">Mid</td><td>DPM</td><td class="mono">20%</td><td>Damage Share</td><td class="mono">18%</td><td>GD@15</td><td class="mono">18%</td></tr>
+        <tr><td class="bold">Bot</td><td>DPM</td><td class="mono">22%</td><td>Damage Share</td><td class="mono">20%</td><td>GD@15</td><td class="mono">18%</td></tr>
+        <tr><td class="bold">Support</td><td>Kill Participation</td><td class="mono">28%</td><td>VSPM</td><td class="mono">22%</td><td>WK/min</td><td class="mono">18%</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="alert blue r">
+    <div class="alert-tag">Nota sobre comparabilidade entre lanes</div>
+    <p>As notas <strong>não são comparáveis entre posições</strong>. Um support com nota 6.2 e um jungle com nota 6.2 não são equivalentes, pois as métricas e escalas diferem por design. Suportes competem por métricas de visão e participação que tendem a ter maior variação relativa; junglers por kill participation e gold diff em pool mais concorrido. A comparação válida é sempre <strong>dentro da mesma posição</strong>. O desvio padrão complementa a mediana medindo consistência: desvio alto indica jogador "8 ou 80"; desvio baixo indica consistência.</p>
+  </div>
+</div>
+</section>
+
+<!-- ══════════ 02 · BASELINE FURIA ══════════ -->
+<section class="s">
+<div class="wrap">
+  <div class="s-head r">
+    <div class="s-num">02</div>
+    <div>
+      <div class="s-title">Baseline <span class="acc-b">FURIA</span></div>
+      <div class="s-sub">30 jogos · CBLOL Cup + Americas Cup</div>
+    </div>
+  </div>
+
+  <div class="sec-label r">Notas gerais por jogador — mediana de 30 jogos</div>
+  <div class="hbar-chart r" id="barBaseline">
+    <div class="hbar-row"><div class="hbar-label">JoJo <span>SUP</span></div><div class="hbar-track"><div class="hbar-fill b" data-w="80">1º support da liga</div></div><div class="hbar-val">8.04</div></div>
+    <div class="hbar-row"><div class="hbar-label">Ayu <span>BOT</span></div><div class="hbar-track"><div class="hbar-fill b" data-w="68">4º bot da liga</div></div><div class="hbar-val">6.80</div></div>
+    <div class="hbar-row"><div class="hbar-label">Tatu <span>JNG</span></div><div class="hbar-track"><div class="hbar-fill b" data-w="62">1º jungle da liga</div></div><div class="hbar-val">6.20</div></div>
+    <div class="hbar-row"><div class="hbar-label">Tutsz <span>MID</span></div><div class="hbar-track"><div class="hbar-fill b" data-w="60">4º mid da liga</div></div><div class="hbar-val">6.02</div></div>
+    <div class="hbar-row"><div class="hbar-label">Guigo <span>TOP</span></div><div class="hbar-track"><div class="hbar-fill b" data-w="58">3º top da liga</div></div><div class="hbar-val">5.76</div></div>
+  </div>
+
+  <div class="alert blue r">
+    <div class="alert-tag">Contexto importante</div>
+    <p>A FURIA tem <strong>todos os 5 jogadores entre os top-5 de suas respectivas lanes na liga</strong>. Individualmente, o elenco é de alto nível. O problema não é falta de talento, é a ausência de um sistema que converta esse talento em vitórias contra um adversário específico.</p>
+  </div>
+
+  <div class="sec-label r" style="margin-top:44px">Performance por contexto — comparação geral vs confrontos RED</div>
+  <div class="tbl-wrap r">
+    <table>
+      <thead><tr><th>Jogador</th><th>Pos</th><th>Nota Geral</th><th>Nota vs RED</th><th>Nota Americas Cup</th><th>Δ vs RED</th><th>Δ Americas</th></tr></thead>
+      <tbody>
+        <tr><td class="bold">JoJo</td><td>SUP</td><td>8.04</td><td>6.10</td><td style="color:var(--blue);font-weight:600">8.38*</td><td class="neg">−1.94</td><td class="pos">+0.34</td></tr>
+        <tr><td class="bold">Ayu</td><td>BOT</td><td>6.80</td><td>6.55</td><td>6.67</td><td class="neg">−0.25</td><td class="neg">−0.13</td></tr>
+        <tr><td class="bold">Tatu</td><td>JNG</td><td>6.20</td><td>6.11</td><td>6.29</td><td class="neg">−0.09</td><td class="pos">+0.09</td></tr>
+        <tr><td class="bold">Tutsz</td><td>MID</td><td>6.02</td><td>5.74</td><td>5.45</td><td class="neg">−0.28</td><td class="neg">−0.57</td></tr>
+        <tr><td class="bold">Guigo</td><td>TOP</td><td>5.76</td><td>5.23</td><td>5.88</td><td class="neg">−0.53</td><td class="pos">+0.12</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="r" style="font-family:var(--f-mono);font-size:9px;color:var(--muted);margin-top:8px;letter-spacing:.06em">* JoJo Americas Cup: melhor jogo = 9.12 (PO G3 equivalente). Nota vs RED inclui os 7 confrontos apenas.</p>
+
+  <div class="alert r" style="margin-top:8px">
+    <div class="alert-tag">Padrão coletivo</div>
+    <p><strong>4 de 5 jogadores da FURIA performam abaixo da média geral nos confrontos vs RED.</strong> A queda não é aleatória, é sistemática e específica a esse matchup. A exceção é Tatu, que mantém praticamente a mesma nota (−0.09) em qualquer contexto.</p>
+  </div>
+</div>
+</section>
+
+<!-- ══════════ 03 · CONFRONTO DIRETO ══════════ -->
+<section class="s">
+<div class="wrap">
+  <div class="s-head r">
+    <div class="s-num">03</div>
+    <div>
+      <div class="s-title">Confronto <span class="acc-r">Direto</span></div>
+      <div class="s-sub">7 jogos · FURIA vs RED Canids — Fase Regular, Playoffs R1 e Lower Bracket</div>
+    </div>
+  </div>
+
+  <div class="sec-label r">Resultados e objetivos por jogo</div>
+  <div class="tbl-wrap r">
+    <table>
+      <thead><tr><th>Jogo</th><th>Série</th><th>Result.</th><th>GD@15</th><th>GD@20</th><th>🐉 F</th><th>🐉 R</th><th>Baron F</th><th>Baron R</th><th>Torres F</th></tr></thead>
+      <tbody>
+        <tr><td>1</td><td>FR-S1</td><td class="loss">LOSS</td><td class="neg">−2866</td><td class="neg">−5979</td><td>0</td><td>5</td><td>0</td><td>2</td><td>1</td></tr>
+        <tr><td>G1</td><td>PO-R1</td><td class="loss">LOSS</td><td class="neg">−201</td><td class="neg">−2200</td><td>2</td><td>4</td><td>0</td><td>2</td><td>2</td></tr>
+        <tr><td>G2</td><td>PO-R1</td><td class="loss">LOSS</td><td class="pos">+110</td><td class="neg">−1095</td><td>1</td><td>4</td><td>0</td><td>1</td><td>2</td></tr>
+        <tr><td>G1</td><td>LB Playoffs</td><td class="loss">LOSS</td><td class="neg">−2099</td><td class="neg">−2480</td><td>2</td><td>4</td><td>0</td><td>1</td><td>2</td></tr>
+        <tr><td>G2</td><td>LB Playoffs</td><td class="loss">LOSS</td><td class="pos" style="color:var(--gold)">+2659 ⚠</td><td class="pos">+4139</td><td>3</td><td>3</td><td>0</td><td>2</td><td>3</td></tr>
+        <tr class="win-row"><td>G3</td><td>LB Playoffs</td><td class="win">WIN ✓</td><td class="pos">+993</td><td class="pos">+697</td><td>3</td><td>1</td><td class="hero-cell">1</td><td>0</td><td>8</td></tr>
+        <tr><td>G4</td><td>LB Playoffs</td><td class="loss">LOSS</td><td class="pos" style="color:var(--gold)">+1553 ⚠</td><td class="pos">+508</td><td>2</td><td>2</td><td>0</td><td>1</td><td>3</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="baron-split r">
+    <div class="baron-card">
+      <div class="bc-num bad">6/7</div>
+      <div class="bc-label">Jogos em que a RED conquistou o Baron<br><strong style="color:var(--red)">→ corresponde às 6 derrotas da FURIA</strong></div>
+    </div>
+    <div class="baron-card">
+      <div class="bc-num good">1/7</div>
+      <div class="bc-label">Jogos em que a FURIA conquistou o Baron<br><strong style="color:var(--green)">→ corresponde à única vitória da FURIA</strong></div>
+    </div>
+  </div>
+
+  <div class="sec-label r">Confronto por posição — notas por jogo (playoffs MD5)</div>
+
+  <div class="matchup-block r">
+    <div class="mb-label">G1 — Derrota · FURIA vence 2 de 5 matchups individuais</div>
+    <div class="mu-row"><div class="mu-left"><div class="mu-name furia">Tatu</div><span class="mu-pos-chip chip-jng">JNG</span></div><div class="mu-center"><div class="mu-pos">margem</div><div class="mu-margin pos">+2.70</div></div><div class="mu-right"><span class="mu-note">2.60</span><div class="mu-name red">Curse</div></div></div>
+    <div class="mu-row"><div class="mu-left"><div class="mu-name furia">Tutsz</div><span class="mu-pos-chip chip-mid">MID</span></div><div class="mu-center"><div class="mu-pos">margem</div><div class="mu-margin pos">+0.35</div></div><div class="mu-right"><span class="mu-note">6.31</span><div class="mu-name red">Kaze</div></div></div>
+    <div class="mu-row"><div class="mu-left"><div class="mu-name furia">JoJo</div><span class="mu-pos-chip chip-sup">SUP</span></div><div class="mu-center"><div class="mu-pos">margem</div><div class="mu-margin neg">−3.16</div></div><div class="mu-right"><span class="mu-note" style="color:var(--gold)">7.82</span><div class="mu-name red">frosty</div></div></div>
+    <div class="mu-row"><div class="mu-left"><div class="mu-name furia">Guigo</div><span class="mu-pos-chip chip-top">TOP</span></div><div class="mu-center"><div class="mu-pos">margem</div><div class="mu-margin neg">−3.02</div></div><div class="mu-right"><span class="mu-note">8.42</span><div class="mu-name red">fNb</div></div></div>
+    <div class="mu-row"><div class="mu-left"><div class="mu-name furia">Ayu</div><span class="mu-pos-chip chip-bot">BOT</span></div><div class="mu-center"><div class="mu-pos">margem</div><div class="mu-margin neg">−4.40</div></div><div class="mu-right"><span class="mu-note">8.61</span><div class="mu-name red">Rabelo</div></div></div>
+  </div>
+
+  <div class="matchup-block r">
+    <div class="mb-label win">G3 — VITÓRIA ✓ · FURIA vence 4 de 5 matchups · único jogo ganho</div>
+    <div class="mu-row win-mu"><div class="mu-left"><div class="mu-name furia">Tatu</div><span class="mu-pos-chip chip-jng">JNG</span></div><div class="mu-center"><div class="mu-pos">margem</div><div class="mu-margin pos">+8.31</div></div><div class="mu-right"><span class="mu-note">1.69</span><div class="mu-name red">Curse</div></div></div>
+    <div class="mu-row win-mu"><div class="mu-left"><div class="mu-name furia">Tutsz</div><span class="mu-pos-chip chip-mid">MID</span></div><div class="mu-center"><div class="mu-pos">margem</div><div class="mu-margin pos">+4.48</div></div><div class="mu-right"><span class="mu-note">3.62</span><div class="mu-name red">Kaze</div></div></div>
+    <div class="mu-row win-mu"><div class="mu-left"><div class="mu-name furia">JoJo <span style="font-size:10px;color:var(--gold)">★ Alistar</span></div><span class="mu-pos-chip chip-sup">SUP</span></div><div class="mu-center"><div class="mu-pos">margem</div><div class="mu-margin neg">−0.34</div></div><div class="mu-right"><span class="mu-note">6.89</span><div class="mu-name red">frosty</div></div></div>
+    <div class="mu-row win-mu"><div class="mu-left"><div class="mu-name furia">Ayu</div><span class="mu-pos-chip chip-bot">BOT</span></div><div class="mu-center"><div class="mu-pos">margem</div><div class="mu-margin pos">+4.17</div></div><div class="mu-right"><span class="mu-note">4.05</span><div class="mu-name red">Rabelo</div></div></div>
+    <div class="mu-row win-mu"><div class="mu-left"><div class="mu-name furia">Guigo</div><span class="mu-pos-chip chip-top">TOP</span></div><div class="mu-center"><div class="mu-pos">margem</div><div class="mu-margin pos">+2.04</div></div><div class="mu-right"><span class="mu-note">3.19</span><div class="mu-name red">fNb</div></div></div>
+  </div>
+
+  <div class="alert green r" style="margin-top:4px">
+    <div class="alert-tag">Padrão do G3</div>
+    <p>O G3 é o único jogo em que a FURIA executa corretamente os pré-requisitos de Baron, mesmo que não de forma perfeita, dependendo do Tatu acertar o smite em um confronto 50/50. A sequência foi resultado de uma leitura individual correta (JoJo/Alistar interceptando frosty/Bard), não de um protocolo sistemático. <strong>A vitória demonstra que a FURIA tem capacidade de executar o sistema correto, mas não o executa de forma consistente.</strong></p>
+  </div>
+</div>
+</section>
+
+<!-- ══════════ 04 · DIAGNÓSTICO RED ══════════ -->
+<section class="s">
+<div class="wrap">
+  <div class="s-head r">
+    <div class="s-num">04</div>
+    <div>
+      <div class="s-title">Diagnóstico <span class="acc-r">RED</span></div>
+      <div class="s-sub">Por que a RED vence, o sistema que compensa o elo fraco</div>
+    </div>
+  </div>
+
+  <div class="sec-label r">Notas RED — geral vs confronto específico contra a FURIA</div>
+  <p class="r" style="color:var(--dim);font-size:13px;max-width:680px;margin-bottom:20px">O dado mais revelador do confronto não está nos números absolutos, mas no <strong style="color:var(--ink)">delta entre a nota geral e a nota específica nos 7 jogos contra a FURIA</strong>. Quatro de cinco jogadores da RED performam <em>melhor</em> contra a FURIA do que contra o resto da liga.</p>
+
+  <div class="tbl-wrap r">
+    <table>
+      <thead><tr><th>Jogador</th><th>Pos</th><th>Nota Geral (27 jogos)</th><th>Nota vs FURIA (7 jogos)</th><th>Delta</th><th>Interpretação</th></tr></thead>
+      <tbody>
+        <tr><td class="bold" style="color:var(--red)">Kaze</td><td>MID</td><td>6.38</td><td class="bold" style="color:var(--red)">8.16</td><td class="pos">+1.78</td><td class="dim-c">Step up expressivo nos confrontos</td></tr>
+        <tr><td class="bold" style="color:var(--red)">Rabelo</td><td>BOT</td><td>6.65</td><td class="bold" style="color:var(--red)">7.40</td><td class="pos">+0.75</td><td class="dim-c">Eleva consistentemente vs FURIA</td></tr>
+        <tr><td class="bold" style="color:var(--red)">fNb</td><td>TOP</td><td>5.58</td><td class="bold" style="color:var(--red)">6.07</td><td class="pos">+0.49</td><td class="dim-c">Melhoria moderada</td></tr>
+        <tr><td class="bold" style="color:var(--gold)">frosty</td><td>SUP</td><td>7.93</td><td class="bold" style="color:var(--gold)">7.93</td><td class="flat" style="color:var(--muted)">0.00</td><td class="dim-c">Mantém nível de elite em qualquer contexto</td></tr>
+        <tr><td class="bold" style="color:var(--muted)">Curse</td><td>JNG</td><td>4.44</td><td class="bold" style="color:var(--muted)">3.41</td><td class="neg">−1.03</td><td class="dim-c">Queda vs Tatu, sistema compensa</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="alert r">
+    <div class="alert-tag">Conclusão central</div>
+    <p>A RED eleva seu nível coletivo especificamente nos confrontos contra a FURIA. <strong>O sistema funciona mesmo com Curse perdendo para Tatu em todos os 7 jogos</strong>, porque Kaze, Rabelo e fNb compensam com performances acima da média. A FURIA faz o oposto: queda coletiva específica nesse matchup (4/5 jogadores abaixo da média geral).</p>
+  </div>
+
+  <div class="sec-label r" style="margin-top:44px">frosty — o diferencial tático subavaliado</div>
+  <div class="tbl-wrap r">
+    <table>
+      <thead><tr><th>Jogo</th><th>JoJo (pick)</th><th>frosty (pick)</th><th>Resultado</th><th>Mecanismo de impacto</th></tr></thead>
+      <tbody>
+        <tr><td class="mono">G1</td><td>Rakan</td><td>Karma</td><td class="loss">LOSS</td><td>Karma expulsava Rakan das áreas de visão a distância. JoJo controlou bem dentro das limitações do kit.</td></tr>
+        <tr><td class="mono">G2</td><td>Nami</td><td>Leona</td><td class="loss">LOSS</td><td>Nami sem mobilidade proativa. Pontos críticos foram decisões coletivas, não atribuíveis ao matchup de sup isoladamente.</td></tr>
+        <tr class="win-row"><td class="mono">G3</td><td class="hero-cell">Alistar ★</td><td>Bard</td><td class="win">WIN</td><td>Alistar disputou fisicamente o espaço → interceptou frosty → pickoff → Baron conquistado. Único pick que permite essa sequência.</td></tr>
+        <tr><td class="mono">G4</td><td>Milio</td><td>Nautilus</td><td class="loss">LOSS</td><td>Milio sem capacidade de contestar visão proativamente. RED manteve controle das áreas do Baron.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="sec-label r">Notas de frosty jogo a jogo vs FURIA</div>
+  <div class="hbar-chart r">
+    <div class="hbar-row"><div class="hbar-label">FR-S1</div><div class="hbar-track"><div class="hbar-fill r" data-w="91.7">9.17</div></div><div class="hbar-val">9.17</div></div>
+    <div class="hbar-row"><div class="hbar-label">PO-R1 G1</div><div class="hbar-track"><div class="hbar-fill r" data-w="62.6">6.26</div></div><div class="hbar-val">6.26</div></div>
+    <div class="hbar-row"><div class="hbar-label">PO-R1 G2</div><div class="hbar-track"><div class="hbar-fill r" data-w="100">10.00</div></div><div class="hbar-val">10.00</div></div>
+    <div class="hbar-row"><div class="hbar-label">PO G1</div><div class="hbar-track"><div class="hbar-fill r" data-w="88.5">8.85</div></div><div class="hbar-val">8.85</div></div>
+    <div class="hbar-row"><div class="hbar-label">PO G2</div><div class="hbar-track"><div class="hbar-fill r" data-w="76">7.60</div></div><div class="hbar-val">7.60</div></div>
+    <div class="hbar-row"><div class="hbar-label" style="color:var(--green)">PO G3 ✓</div><div class="hbar-track"><div class="hbar-fill gn" data-w="68.9">6.89</div></div><div class="hbar-val" style="color:var(--green)">6.89</div></div>
+    <div class="hbar-row"><div class="hbar-label">PO G4</div><div class="hbar-track"><div class="hbar-fill r" data-w="79.3">7.93</div></div><div class="hbar-val">7.93</div></div>
+  </div>
+  <p class="r" style="font-size:13px;color:var(--dim);margin-top:4px">frosty mediana vs FURIA: <strong style="color:var(--ink)">7.93</strong> · desvio: <strong style="color:var(--ink)">1.32</strong>, alta consistência. O único jogo em que sua nota cai para baixo de 7 é o G3, exatamente o único em que JoJo joga Alistar e disputa fisicamente o espaço de visão.</p>
+</div>
+</section>
+
+<!-- ══════════ 05 · HIERARQUIA DA LIGA ══════════ -->
+<section class="s">
+<div class="wrap">
+  <div class="s-head r">
+    <div class="s-num">05</div>
+    <div>
+      <div class="s-title"><em>Rock-Paper-</em><span class="acc-r">Scissors</span></div>
+      <div class="s-sub">A hierarquia estrutural do CBLOL Cup — LOUD · RED · FURIA</div>
+    </div>
+  </div>
+
+  <div class="hier-grid r">
+    <div class="hier-row">
+      <div class="hier-stats">
+        <div class="hs">GD@15: <strong style="color:var(--red)">−1505</strong></div>
+        <div class="hs">WR geral: <strong>68.4%</strong></div>
+        <div class="hs">Baron vs RED: <strong style="color:var(--gold)">0.906</strong></div>
+        <div class="hs">WR com GD@15 negativo: <strong>57.1%</strong></div>
+      </div>
+      <div class="hier-badge">
+        <div class="hb-team g">LOUD</div>
+        <div class="hb-label">1º em WR · Teamfight</div>
+      </div>
+      <div class="hier-stats right">
+        <div class="hs">Teamfight superior</div>
+        <div class="hs">Vira desvantagens</div>
+        <div class="hs">Domina Baron vs RED</div>
+      </div>
+    </div>
+    <div class="hier-row">
+      <div class="hier-stats">
+        <div class="hs">GD@15: <strong>+474</strong></div>
+        <div class="hs">WR geral: <strong>55.0%</strong></div>
+        <div class="hs">Baron vs FURIA: <strong style="color:var(--gold)">0.857</strong></div>
+        <div class="hs">WR com GD@15 negativo: <strong>44.4%</strong></div>
+      </div>
+      <div class="hier-badge">
+        <div class="hb-team r">RED</div>
+        <div class="hb-label">Macro mid game · Baron</div>
+      </div>
+      <div class="hier-stats right">
+        <div class="hs">Early neutro</div>
+        <div class="hs">Baron por sistema</div>
+        <div class="hs">Colapsa vs LOUD</div>
+      </div>
+    </div>
+    <div class="hier-row">
+      <div class="hier-stats">
+        <div class="hs">GD@15: <strong style="color:var(--blue)">+1085</strong></div>
+        <div class="hs">WR geral: <strong>63.6%</strong></div>
+        <div class="hs">Baron vs RED: <strong style="color:var(--red)">0.143</strong></div>
+        <div class="hs">WR com GD@15 positivo: <strong>78.6%</strong></div>
+      </div>
+      <div class="hier-badge">
+        <div class="hb-team b">FURIA</div>
+        <div class="hb-label">Melhor early · Snowball</div>
+      </div>
+      <div class="hier-stats right">
+        <div class="hs">Early dominante</div>
+        <div class="hs">Snowball eficiente</div>
+        <div class="hs">Sem sistema de Baron</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec-label r">Baron rate nos matchups cruzados</div>
+  <div class="hbar-chart r" id="barBaron">
+    <div class="hbar-row"><div class="hbar-label">LOUD vs RED</div><div class="hbar-track"><div class="hbar-fill g" data-w="90.6">90.6%</div></div><div class="hbar-val" style="color:var(--gold)">90.6%</div></div>
+    <div class="hbar-row"><div class="hbar-label">RED vs FURIA</div><div class="hbar-track"><div class="hbar-fill r" data-w="85.7">85.7%</div></div><div class="hbar-val" style="color:var(--red)">85.7%</div></div>
+    <div class="hbar-row"><div class="hbar-label">FURIA vs RED</div><div class="hbar-track"><div class="hbar-fill gr" data-w="14.3">14.3%</div></div><div class="hbar-val" style="color:var(--muted)">14.3%</div></div>
+    <div class="hbar-row"><div class="hbar-label">RED vs LOUD</div><div class="hbar-track"><div class="hbar-fill gr" data-w="9.4">9.4%</div></div><div class="hbar-val" style="color:var(--muted)">9.4%</div></div>
+  </div>
+</div>
+</section>
+
+<!-- ══════════ 06 · MECANISMO DE DERROTA ══════════ -->
+<section class="s">
+<div class="wrap">
+  <div class="s-head r">
+    <div class="s-num">06</div>
+    <div>
+      <div class="s-title">Mecanismo de <span class="acc-r">Derrota</span></div>
+      <div class="s-sub">O colapso entre @15 e @20 · Visão que não vira decisão</div>
+    </div>
+  </div>
+
+  <div class="gd-wrap r">
+    <div class="gd-title">Gold Difference — perspectiva FURIA · todos os 7 jogos vs RED</div>
+    <svg id="gdChart" viewBox="0 0 760 280" preserveAspectRatio="xMidYMid meet"></svg>
+    <div class="vis-legend" style="margin-top:12px;flex-wrap:wrap;gap:16px">
+      <div class="vleg"><div class="vleg-dot" style="background:var(--green)"></div>G3 WIN</div>
+      <div class="vleg"><div class="vleg-dot" style="background:var(--red);opacity:.5"></div>Derrotas</div>
+      <div class="vleg"><div class="vleg-dot" style="background:var(--gold)"></div>Média geral CBLOL</div>
+    </div>
+  </div>
+
+  <div class="tbl-wrap r">
+    <table>
+      <thead><tr><th>Jogo</th><th>Result.</th><th>GD@10</th><th>GD@15</th><th>GD@20</th><th>GD@25</th><th>Obs.</th></tr></thead>
+      <tbody>
+        <tr><td>FR-S1</td><td class="loss">LOSS</td><td class="neg">−269</td><td class="neg">−2866</td><td class="neg">−5979</td><td class="neg">−4484</td><td>—</td></tr>
+        <tr><td>PO-R1 G1</td><td class="loss">LOSS</td><td class="pos">+258</td><td class="neg">−201</td><td class="neg">−2200</td><td class="pos">+191</td><td>—</td></tr>
+        <tr><td>PO-R1 G2</td><td class="loss">LOSS</td><td class="neg">−992</td><td class="pos" style="color:var(--gold)">+110 ⚠</td><td class="neg">−1095</td><td class="neg">−2497</td><td style="color:var(--gold)">Early positivo, Baron cedido</td></tr>
+        <tr><td>LB PO G1</td><td class="loss">LOSS</td><td class="neg">−1172</td><td class="neg">−2099</td><td class="neg">−2480</td><td class="neg">−834</td><td>—</td></tr>
+        <tr><td>LB PO G2</td><td class="loss">LOSS</td><td class="pos">+1523</td><td class="pos" style="color:var(--gold)">+2659 ⚠</td><td class="pos">+4139</td><td class="pos">+2252</td><td style="color:var(--gold)">+4k de ouro, Baron cedido</td></tr>
+        <tr class="win-row"><td>LB PO G3</td><td class="win">WIN ✓</td><td class="pos">+854</td><td class="pos">+993</td><td class="pos">+697</td><td class="pos">+3883</td><td style="color:var(--green)">Baron conquistado</td></tr>
+        <tr><td>LB PO G4</td><td class="loss">LOSS</td><td class="pos">+989</td><td class="pos" style="color:var(--gold)">+1553 ⚠</td><td class="pos">+508</td><td class="pos">+741</td><td style="color:var(--gold)">Early positivo, Baron cedido</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="kpi-row r" style="grid-template-columns:repeat(3,1fr);margin-top:0">
+    <div class="kpi blue"><div class="kpi-val">+56</div><div class="kpi-label">GD@10 médio (derrotas vs RED)</div><div class="kpi-sub">Early ainda positivo</div></div>
+    <div class="kpi" style="background:var(--paper2)"><div class="kpi-val" style="color:var(--dim)">−141</div><div class="kpi-label">GD@15 médio (derrotas vs RED)</div><div class="kpi-sub">Virada entre @10 e @15</div></div>
+    <div class="kpi red"><div class="kpi-val">−1184</div><div class="kpi-label">GD@20 médio (derrotas vs RED)</div><div class="kpi-sub">Colapso de 1000+ em 5 minutos</div></div>
+  </div>
+
+  <div class="sec-label r">Ward Kills por minuto — FURIA supera RED em todos os 7 jogos</div>
+  <div class="r" style="background:var(--paper2);border:1px solid var(--hairline2);padding:24px 20px">
+    <div class="vis-grid">
+      <div class="vis-col"><div class="vis-label">FR-S1</div><div class="vis-bar-group"><div class="vis-bar vb-f" style="height:49px"></div><div class="vis-bar vb-r" style="height:41px"></div></div><div class="vis-nums"><span class="vn-f">1.71</span><span class="vn-r">1.42</span></div><div class="vis-result vloss">LOSS</div></div>
+      <div class="vis-col"><div class="vis-label">PO-R1 G1</div><div class="vis-bar-group"><div class="vis-bar vb-f" style="height:39px"></div><div class="vis-bar vb-r" style="height:36px"></div></div><div class="vis-nums"><span class="vn-f">1.36</span><span class="vn-r">1.25</span></div><div class="vis-result vloss">LOSS</div></div>
+      <div class="vis-col"><div class="vis-label">PO-R1 G2</div><div class="vis-bar-group"><div class="vis-bar vb-f" style="height:44px"></div><div class="vis-bar vb-r" style="height:43px"></div></div><div class="vis-nums"><span class="vn-f">1.53</span><span class="vn-r">1.50</span></div><div class="vis-result vloss">LOSS</div></div>
+      <div class="vis-col"><div class="vis-label">PO G1</div><div class="vis-bar-group"><div class="vis-bar vb-f" style="height:59px"></div><div class="vis-bar vb-r" style="height:55px"></div></div><div class="vis-nums"><span class="vn-f">2.05</span><span class="vn-r">1.91</span></div><div class="vis-result vloss">LOSS</div></div>
+      <div class="vis-col"><div class="vis-label">PO G2</div><div class="vis-bar-group"><div class="vis-bar vb-f" style="height:58px"></div><div class="vis-bar vb-r" style="height:44px"></div></div><div class="vis-nums"><span class="vn-f">2.01</span><span class="vn-r">1.52</span></div><div class="vis-result vloss">LOSS</div></div>
+      <div class="vis-col"><div class="vis-label">PO G3</div><div class="vis-bar-group"><div class="vis-bar vb-f" style="height:50px"></div><div class="vis-bar vb-r" style="height:30px"></div></div><div class="vis-nums"><span class="vn-f">1.72</span><span class="vn-r">1.04</span></div><div class="vis-result vwin">WIN</div></div>
+      <div class="vis-col"><div class="vis-label">PO G4</div><div class="vis-bar-group"><div class="vis-bar vb-f" style="height:51px"></div><div class="vis-bar vb-r" style="height:41px"></div></div><div class="vis-nums"><span class="vn-f">1.78</span><span class="vn-r">1.43</span></div><div class="vis-result vloss">LOSS</div></div>
+    </div>
+    <div class="vis-legend" style="margin-top:12px">
+      <div class="vleg"><div class="vleg-dot vb-f"></div>FURIA WK/min total · média 1.74</div>
+      <div class="vleg"><div class="vleg-dot vb-r"></div>RED WK/min total · média 1.44</div>
+    </div>
+  </div>
+  <div class="alert r">
+    <div class="alert-tag">Paradoxo da visão</div>
+    <p>A FURIA destrói consistentemente mais wards que a RED, com vantagem de <strong>1.2–1.6× por jogo</strong>. No único WIN (PO G3), a margem é 1.65×. <strong>O problema não é ausência de visão, é a tomada de decisão com a visão disponível.</strong> A vantagem informacional não se traduz em restrições de movimentação nem em pré-requisitos de Baron.</p>
+  </div>
+</div>
+</section>
+
+<!-- ══════════ 07 · EVIDÊNCIA QUALITATIVA ══════════ -->
+<section class="s">
+<div class="wrap">
+  <div class="s-head r">
+    <div class="s-num">07</div>
+    <div>
+      <div class="s-title">Evidência <span class="acc-b">Qualitativa</span></div>
+      <div class="s-sub">Os 4 jogos da série eliminatória MD5, o que os dados não capturam</div>
+    </div>
+  </div>
+
+  <div class="ev-list r">
+    <div class="ev">
+      <div class="ev-side"><div class="ev-game">G1</div><div class="ev-badge eb-l">LOSS</div></div>
+      <div class="ev-body">
+        <div class="ev-timing">33min · Ponto crítico único</div>
+        <div class="ev-title">Visão não convencional, o Arongueijo</div>
+        <div class="ev-text">Tutsz se movimentou por área marcada pela <strong>visão do Arongueijo</strong>, efeito passivo do objetivo neutro após os 20min, não um ward convencional. Foi pickoffado; o time morreu na teamfight consequente. JoJo com Rakan havia controlado bem a visão até esse momento, conquistando o 4° dragão com setup adequado. <strong>A derrota foi causada por desrespeito a uma fonte de visão não convencional, independente do matchup de suporte.</strong></div>
+      </div>
+    </div>
+    <div class="ev">
+      <div class="ev-side"><div class="ev-game">G2</div><div class="ev-badge eb-l">LOSS</div></div>
+      <div class="ev-body">
+        <div class="ev-timing">20–27min (PC1) · 29min (PC2)</div>
+        <div class="ev-title">3 pickoffs por desrespeito à visão + teamfight desnecessária</div>
+        <div class="ev-text"><strong>PC1:</strong> A FURIA perdeu 3 pickoffs (2× Tutsz e 1× Ayu com Corki, sua terceira derrota em 3 jogos com o campeão em 2026) por movimentação em áreas não cobertas pela visão que JoJo havia conquistado com Nami. O time não processou que Nami cria cobertura de forma diferente de um tank.<br><br><strong>PC2:</strong> Com visão insuficiente, a FURIA travou teamfight no Dragão da Alma que não precisava acontecer. Derrota na teamfight → Baron para a RED → jogo encerrado.</div>
+      </div>
+    </div>
+    <div class="ev ev-win">
+      <div class="ev-side"><div class="ev-game" style="color:var(--green)">G3</div><div class="ev-badge eb-w">WIN</div></div>
+      <div class="ev-body">
+        <div class="ev-timing" style="color:var(--green)">23–24min · Execução correta dos pré-requisitos</div>
+        <div class="ev-title">JoJo intercepta frosty · Baron com vantagem numérica</div>
+        <div class="ev-text">JoJo (Alistar) encontrou e interceptou frosty (Bard) <strong>ativamente na disputa de visão</strong>, gerando pickoff controlado. Com vantagem numérica, a FURIA iniciou o Baron, mesmo que não de forma perfeita, dependendo do Tatu acertar o smite em um confronto 50/50. Baron conquistado; time eliminado; jogo encerrado. <strong>Esta vitória foi resultado de uma sequência individual correta em um momento específico, não de um sistema que a FURIA executa de forma consistente.</strong></div>
+      </div>
+    </div>
+    <div class="ev">
+      <div class="ev-side"><div class="ev-game">G4</div><div class="ev-badge eb-l">LOSS</div></div>
+      <div class="ev-body">
+        <div class="ev-timing">24min (PC1) · 27min (PC2)</div>
+        <div class="ev-title">Teamfight sem setup + teleporte neutralizado pela visão adversária</div>
+        <div class="ev-text"><strong>PC1 (24min):</strong> Visão insuficiente de ambos os lados, a FURIA conquistou o dragão mas perdeu a teamfight.<br><br><strong>PC2 (27min):</strong> Iniciação prematura antes do teleporte do Tutsz chegar para defender a T2 do top. O teleporte foi executado por caminho ineficiente porque <strong>a RED tinha controle de visão superior na região</strong>, e o flanqueamento foi completamente neutralizado.</div>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- ══════════ 08 · RANKING POR POSIÇÃO ══════════ -->
+<section class="s">
+<div class="wrap">
+  <div class="s-head r">
+    <div class="s-num">08</div>
+    <div>
+      <div class="s-title">Ranking por <span class="acc-b">Posição</span></div>
+      <div class="s-sub">CBLOL Cup 2026 · todos os jogadores · Método A · mediana + desvio</div>
+    </div>
+  </div>
+
+  <div class="alert blue r">
+    <div class="alert-tag">Como ler estas tabelas</div>
+    <p>Nota = mediana das notas por jogo (método A, pool geral do jogo). Desvio = consistência: alto indica "8 ou 80", baixo indica jogador previsível. <strong>Notas não são comparáveis entre lanes</strong>, cada posição tem métricas e escala próprias. FURIA em azul · RED em vermelho.</p>
+  </div>
+
+  <div class="alert gold r">
+    <div class="alert-tag">Escopo dos dados — Cloud9 e Sentinels</div>
+    <p>Os jogadores da <strong>Cloud9 e Sentinels</strong> foram incluídos nos rankings por terem disputado a Americas Cup junto com os times do CBLOL. No entanto, seus dados correspondem <strong>exclusivamente aos jogos da Americas Cup</strong>, sem incluir dados de LCS. As notas desses jogadores refletem sua performance em ambiente de alto nível do circuito americano, que pode ou não ser representativa do desempenho típico na LCS.</p>
+  </div>
+
+  <!-- TOP -->
+  <div class="sec-label r">Top Lane</div>
+  <div class="tbl-wrap r">
+    <table>
+      <thead><tr><th>#</th><th>Jogador</th><th>Time</th><th>Nota</th><th>Desvio</th><th>Jogos</th><th>GD@15</th><th>DPM</th><th>KDA</th><th>CSPM</th></tr></thead>
+      <tbody>
+        <tr><td class="rank-num">1</td><td class="bold">Zest</td><td>LØS</td><td class="mono">6.43</td><td class="mono">1.70</td><td class="mono">14</td><td class="pos">+455</td><td class="mono">745</td><td class="mono">5.95</td><td class="mono">9.18</td></tr>
+        <tr><td class="rank-num">2</td><td class="bold">xyno</td><td>LOUD</td><td class="mono">5.83</td><td class="mono">1.30</td><td class="mono">19</td><td class="pos">+133</td><td class="mono">616</td><td class="mono">5.53</td><td class="mono">9.26</td></tr>
+        <tr class="rank-furia"><td class="rank-num">3</td><td class="bold">Guigo</td><td>FURIA</td><td class="mono">5.76</td><td class="mono">1.24</td><td class="mono">30</td><td class="neg">−3</td><td class="mono">667</td><td class="mono">6.15</td><td class="mono">8.41</td></tr>
+        <tr><td class="rank-num">4</td><td class="bold">fNb</td><td>RED Canids</td><td class="mono">5.58</td><td class="mono">1.32</td><td class="mono">27</td><td class="neg">−111</td><td class="mono">632</td><td class="mono">5.79</td><td class="mono">8.82</td></tr>
+        <tr><td class="rank-num">5</td><td class="bold">Thanatos</td><td>Cloud9</td><td class="mono">5.45</td><td class="mono">1.03</td><td class="mono">14</td><td class="pos">+488</td><td class="mono">643</td><td class="mono">4.01</td><td class="mono">9.20</td></tr>
+        <tr><td class="rank-num">6</td><td class="bold">Devost</td><td>Leviatan</td><td class="mono">5.30</td><td class="mono">1.10</td><td class="mono">22</td><td class="neg">−295</td><td class="mono">617</td><td class="mono">3.80</td><td class="mono">8.18</td></tr>
+        <tr><td class="rank-num">7</td><td class="bold">Robo</td><td>paiN Gaming</td><td class="mono">5.10</td><td class="mono">1.45</td><td class="mono">14</td><td class="neg">−56</td><td class="mono">629</td><td class="mono">3.87</td><td class="mono">8.60</td></tr>
+        <tr><td class="rank-num">8</td><td class="bold">Boal</td><td>Vivo Keyd Stars</td><td class="mono">4.94</td><td class="mono">1.27</td><td class="mono">16</td><td class="pos">+32</td><td class="mono">580</td><td class="mono">4.37</td><td class="mono">8.42</td></tr>
+        <tr><td class="rank-num">9</td><td class="bold">Impact</td><td>Sentinels</td><td class="mono">4.19</td><td class="mono">1.07</td><td class="mono">9</td><td class="neg">−236</td><td class="mono">641</td><td class="mono">2.63</td><td class="mono">8.04</td></tr>
+        <tr><td class="rank-num">10</td><td class="bold">curty</td><td>Fluxo W7M</td><td class="mono">3.98</td><td class="mono">0.75</td><td class="mono">9</td><td class="neg">−419</td><td class="mono">599</td><td class="mono">1.51</td><td class="mono">8.17</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- JUNGLE -->
+  <div class="sec-label r">Jungle</div>
+  <div class="tbl-wrap r">
+    <table>
+      <thead><tr><th>#</th><th>Jogador</th><th>Time</th><th>Nota</th><th>Desvio</th><th>Jogos</th><th>Kill Part.</th><th>KDA</th><th>GD@15</th><th>DPM</th></tr></thead>
+      <tbody>
+        <tr class="rank-furia"><td class="rank-num rank-gold">1</td><td class="bold">Tatu</td><td>FURIA</td><td class="mono" style="color:var(--blue)">6.20</td><td class="mono">1.24</td><td class="mono">30</td><td class="mono">80%</td><td class="mono">9.92</td><td class="pos">+530</td><td class="mono">552</td></tr>
+        <tr><td class="rank-num">2</td><td class="bold">Drakehero</td><td>LØS</td><td class="mono">4.86</td><td class="mono">1.27</td><td class="mono">14</td><td class="mono">73%</td><td class="mono">6.25</td><td class="neg">−84</td><td class="mono">374</td></tr>
+        <tr><td class="rank-num">3</td><td class="bold">YoungJae</td><td>LOUD</td><td class="mono">4.77</td><td class="mono">1.20</td><td class="mono">19</td><td class="mono">71%</td><td class="mono">4.29</td><td class="neg">−414</td><td class="mono">438</td></tr>
+        <tr><td class="rank-num">4</td><td class="bold">Blaber</td><td>Cloud9</td><td class="mono">4.76</td><td class="mono">1.48</td><td class="mono">14</td><td class="mono">73%</td><td class="mono">4.11</td><td class="pos">+164</td><td class="mono">400</td></tr>
+        <tr><td class="rank-num">5</td><td class="bold">CarioK</td><td>paiN Gaming</td><td class="mono">4.52</td><td class="mono">1.09</td><td class="mono">14</td><td class="mono">73%</td><td class="mono">4.36</td><td class="pos">+160</td><td class="mono">426</td></tr>
+        <tr class="rank-red"><td class="rank-num">6</td><td class="bold">Curse</td><td>RED Canids</td><td class="mono" style="color:var(--red)">4.44</td><td class="mono">1.45</td><td class="mono">27</td><td class="mono">75%</td><td class="mono">5.12</td><td class="neg">−10</td><td class="mono">491</td></tr>
+        <tr><td class="rank-num">7</td><td class="bold">Disamis</td><td>Vivo Keyd Stars</td><td class="mono">4.20</td><td class="mono">1.62</td><td class="mono">16</td><td class="mono">81%</td><td class="mono">5.30</td><td class="pos">+166</td><td class="mono">412</td></tr>
+        <tr><td class="rank-num">8</td><td class="bold">HamBak</td><td>Sentinels</td><td class="mono">4.09</td><td class="mono">1.23</td><td class="mono">9</td><td class="mono">75%</td><td class="mono">3.96</td><td class="neg">−352</td><td class="mono">452</td></tr>
+        <tr><td class="rank-num">9</td><td class="bold">Peach</td><td>Fluxo W7M</td><td class="mono">3.97</td><td class="mono">1.08</td><td class="mono">9</td><td class="mono">74%</td><td class="mono">2.44</td><td class="neg">−541</td><td class="mono">435</td></tr>
+        <tr><td class="rank-num">10</td><td class="bold">Booki</td><td>Leviatan</td><td class="mono">3.74</td><td class="mono">1.20</td><td class="mono">22</td><td class="mono">67%</td><td class="mono">3.89</td><td class="neg">−262</td><td class="mono">330</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- MID -->
+  <div class="sec-label r">Mid Lane</div>
+  <div class="tbl-wrap r">
+    <table>
+      <thead><tr><th>#</th><th>Jogador</th><th>Time</th><th>Nota</th><th>Desvio</th><th>Jogos</th><th>DPM</th><th>Dmg Share</th><th>GD@15</th><th>KDA</th></tr></thead>
+      <tbody>
+        <tr><td class="rank-num">1</td><td class="bold">Feisty</td><td>LØS</td><td class="mono">6.45</td><td class="mono">1.43</td><td class="mono">14</td><td class="mono">627</td><td class="mono">22%</td><td class="pos">+479</td><td class="mono">5.88</td></tr>
+        <tr class="rank-red"><td class="rank-num">2</td><td class="bold">Kaze</td><td>RED Canids</td><td class="mono" style="color:var(--red)">6.38</td><td class="mono">1.66</td><td class="mono">27</td><td class="mono">746</td><td class="mono">26%</td><td class="pos">+106</td><td class="mono">6.32</td></tr>
+        <tr><td class="rank-num">3</td><td class="bold">Enga</td><td>Leviatan</td><td class="mono">6.22</td><td class="mono">1.81</td><td class="mono">22</td><td class="mono">662</td><td class="mono">26%</td><td class="pos">+210</td><td class="mono">6.80</td></tr>
+        <tr class="rank-furia"><td class="rank-num">4</td><td class="bold">Tutsz</td><td>FURIA</td><td class="mono" style="color:var(--blue)">6.02</td><td class="mono">1.57</td><td class="mono">30</td><td class="mono">667</td><td class="mono">23%</td><td class="pos">+197</td><td class="mono">7.00</td></tr>
+        <tr><td class="rank-num">5</td><td class="bold">tinowns</td><td>paiN Gaming</td><td class="mono">5.69</td><td class="mono">1.68</td><td class="mono">14</td><td class="mono">587</td><td class="mono">23%</td><td class="neg">−417</td><td class="mono">4.91</td></tr>
+        <tr><td class="rank-num">6</td><td class="bold">Mireu</td><td>Vivo Keyd Stars</td><td class="mono">5.49</td><td class="mono">1.86</td><td class="mono">12</td><td class="mono">597</td><td class="mono">24%</td><td class="pos">+299</td><td class="mono">4.05</td></tr>
+        <tr><td class="rank-num">7</td><td class="bold">DARKWINGS</td><td>Sentinels</td><td class="mono">5.35</td><td class="mono">1.17</td><td class="mono">9</td><td class="mono">686</td><td class="mono">25%</td><td class="neg">−83</td><td class="mono">4.01</td></tr>
+        <tr><td class="rank-num">8</td><td class="bold">APA</td><td>Cloud9</td><td class="mono">5.24</td><td class="mono">1.18</td><td class="mono">14</td><td class="mono">622</td><td class="mono">23%</td><td class="pos">+12</td><td class="mono">3.02</td></tr>
+        <tr><td class="rank-num">9</td><td class="bold">Hauz</td><td>Fluxo W7M</td><td class="mono">5.12</td><td class="mono">2.26</td><td class="mono">9</td><td class="mono">636</td><td class="mono">25%</td><td class="neg">−494</td><td class="mono">4.77</td></tr>
+        <tr><td class="rank-num">10</td><td class="bold">Mago</td><td>LOUD</td><td class="mono">4.97</td><td class="mono">1.71</td><td class="mono">12</td><td class="mono">561</td><td class="mono">22%</td><td class="neg">−642</td><td class="mono">3.09</td></tr>
+        <tr><td class="rank-num">11</td><td class="bold">Envy</td><td>LOUD</td><td class="mono">4.94</td><td class="mono">1.57</td><td class="mono">7</td><td class="mono">616</td><td class="mono">23%</td><td class="neg">−96</td><td class="mono">5.13</td></tr>
+        <tr><td class="rank-num">12</td><td class="bold">Qats</td><td>Vivo Keyd Stars</td><td class="mono">4.49</td><td class="mono">1.62</td><td class="mono">4</td><td class="mono">482</td><td class="mono">23%</td><td class="neg">−1109</td><td class="mono">2.43</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- BOT -->
+  <div class="sec-label r">Bot Lane</div>
+  <div class="tbl-wrap r">
+    <table>
+      <thead><tr><th>#</th><th>Jogador</th><th>Time</th><th>Nota</th><th>Desvio</th><th>Jogos</th><th>DPM</th><th>Dmg Share</th><th>GD@15</th><th>KDA</th></tr></thead>
+      <tbody>
+        <tr><td class="rank-num">1</td><td class="bold">Trigger</td><td>paiN Gaming</td><td class="mono">7.69</td><td class="mono">1.73</td><td class="mono">9</td><td class="mono">893</td><td class="mono">33%</td><td class="pos">+232</td><td class="mono">8.32</td></tr>
+        <tr><td class="rank-num">2</td><td class="bold">Bull</td><td>LOUD</td><td class="mono">7.13</td><td class="mono">2.15</td><td class="mono">19</td><td class="mono">753</td><td class="mono">29%</td><td class="neg">−456</td><td class="mono">5.42</td></tr>
+        <tr><td class="rank-num">3</td><td class="bold">Duduhh</td><td>LØS</td><td class="mono">7.10</td><td class="mono">1.30</td><td class="mono">14</td><td class="mono">776</td><td class="mono">28%</td><td class="pos">+733</td><td class="mono">6.41</td></tr>
+        <tr class="rank-furia"><td class="rank-num">4</td><td class="bold">Ayu</td><td>FURIA</td><td class="mono" style="color:var(--blue)">6.80</td><td class="mono">1.66</td><td class="mono">30</td><td class="mono">774</td><td class="mono">27%</td><td class="pos">+95</td><td class="mono">7.40</td></tr>
+        <tr><td class="rank-num">5</td><td class="bold">Zven</td><td>Cloud9</td><td class="mono">6.66</td><td class="mono">1.18</td><td class="mono">14</td><td class="mono">777</td><td class="mono">29%</td><td class="pos">+487</td><td class="mono">2.51</td></tr>
+        <tr class="rank-red"><td class="rank-num">6</td><td class="bold">Rabelo</td><td>RED Canids</td><td class="mono" style="color:var(--red)">6.65</td><td class="mono">1.60</td><td class="mono">27</td><td class="mono">754</td><td class="mono">26%</td><td class="neg">−172</td><td class="mono">6.55</td></tr>
+        <tr><td class="rank-num">7</td><td class="bold">ceo</td><td>Leviatan</td><td class="mono">6.64</td><td class="mono">1.48</td><td class="mono">22</td><td class="mono">848</td><td class="mono">31%</td><td class="pos">+289</td><td class="mono">4.60</td></tr>
+        <tr><td class="rank-num">8</td><td class="bold">Morttheus</td><td>Vivo Keyd Stars</td><td class="mono">6.51</td><td class="mono">1.95</td><td class="mono">16</td><td class="mono">645</td><td class="mono">27%</td><td class="neg">−316</td><td class="mono">6.68</td></tr>
+        <tr><td class="rank-num">9</td><td class="bold">Rahel</td><td>Sentinels</td><td class="mono">6.34</td><td class="mono">0.99</td><td class="mono">9</td><td class="mono">759</td><td class="mono">28%</td><td class="pos">+34</td><td class="mono">4.75</td></tr>
+        <tr><td class="rank-num">10</td><td class="bold">BAO</td><td>Fluxo W7M</td><td class="mono">4.90</td><td class="mono">2.02</td><td class="mono">9</td><td class="mono">662</td><td class="mono">26%</td><td class="neg">−676</td><td class="mono">4.82</td></tr>
+        <tr><td class="rank-num">11</td><td class="bold">Marvin</td><td>paiN Gaming</td><td class="mono">4.86</td><td class="mono">1.41</td><td class="mono">5</td><td class="mono">585</td><td class="mono">23%</td><td class="neg">−844</td><td class="mono">1.37</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- SUPPORT -->
+  <div class="sec-label r">Support</div>
+  <div class="tbl-wrap r">
+    <table>
+      <thead><tr><th>#</th><th>Jogador</th><th>Time</th><th>Nota</th><th>Desvio</th><th>Jogos</th><th>Kill Part.</th><th>VSPM</th><th>WK/min</th><th>KDA</th></tr></thead>
+      <tbody>
+        <tr class="rank-furia"><td class="rank-num rank-gold">1</td><td class="bold">JoJo</td><td>FURIA</td><td class="mono" style="color:var(--blue)">8.04</td><td class="mono">1.71</td><td class="mono">30</td><td class="mono">78%</td><td class="mono">4.04</td><td class="mono">0.48</td><td class="mono">9.86</td></tr>
+        <tr class="rank-red"><td class="rank-num">2</td><td class="bold">frosty</td><td>RED Canids</td><td class="mono" style="color:var(--red)">7.93</td><td class="mono">1.33</td><td class="mono">27</td><td class="mono">77%</td><td class="mono">4.42</td><td class="mono">0.56</td><td class="mono">6.44</td></tr>
+        <tr><td class="rank-num">3</td><td class="bold">TopLop</td><td>Leviatan</td><td class="mono">7.65</td><td class="mono">1.21</td><td class="mono">22</td><td class="mono">74%</td><td class="mono">4.64</td><td class="mono">0.69</td><td class="mono">5.80</td></tr>
+        <tr><td class="rank-num">4</td><td class="bold">Ackerman</td><td>LØS</td><td class="mono">7.48</td><td class="mono">1.55</td><td class="mono">14</td><td class="mono">79%</td><td class="mono">4.29</td><td class="mono">0.53</td><td class="mono">8.13</td></tr>
+        <tr><td class="rank-num">5</td><td class="bold">Kaiwing</td><td>Vivo Keyd Stars</td><td class="mono">7.34</td><td class="mono">1.44</td><td class="mono">16</td><td class="mono">72%</td><td class="mono">4.56</td><td class="mono">0.61</td><td class="mono">4.47</td></tr>
+        <tr><td class="rank-num">6</td><td class="bold">huhi</td><td>Sentinels</td><td class="mono">7.12</td><td class="mono">1.42</td><td class="mono">9</td><td class="mono">84%</td><td class="mono">4.20</td><td class="mono">0.41</td><td class="mono">5.82</td></tr>
+        <tr><td class="rank-num">7</td><td class="bold">ProDelta</td><td>Fluxo W7M</td><td class="mono">6.42</td><td class="mono">1.48</td><td class="mono">9</td><td class="mono">74%</td><td class="mono">4.22</td><td class="mono">0.53</td><td class="mono">3.18</td></tr>
+        <tr><td class="rank-num">8</td><td class="bold">RedBert</td><td>LOUD</td><td class="mono">6.17</td><td class="mono">1.26</td><td class="mono">19</td><td class="mono">73%</td><td class="mono">3.98</td><td class="mono">0.43</td><td class="mono">4.34</td></tr>
+        <tr><td class="rank-num">9</td><td class="bold">Vulcan</td><td>Cloud9</td><td class="mono">6.07</td><td class="mono">1.53</td><td class="mono">14</td><td class="mono">70%</td><td class="mono">3.53</td><td class="mono">0.34</td><td class="mono">6.44</td></tr>
+        <tr><td class="rank-num">10</td><td class="bold">Kuri</td><td>paiN Gaming</td><td class="mono">6.04</td><td class="mono">1.20</td><td class="mono">14</td><td class="mono">77%</td><td class="mono">4.11</td><td class="mono">0.39</td><td class="mono">4.69</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="alert r">
+    <div class="alert-tag">JoJo — 1º support da liga vs derrota nos confrontos</div>
+    <p>JoJo é o melhor support do CBLOL Cup 2026 pela métrica. Sua mediana de <strong>8.04 cai para 6.10 nos 7 confrontos contra frosty</strong> (−1.94), a maior queda contextual de qualquer jogador do elenco. Isso não é limitação individual: é um matchup específico em que o tipo de pick define quem controla fisicamente o espaço de visão antes do Baron. <strong>Com Alistar (G3), JoJo vence a disputa. Com Rakan, Nami e Milio, perde o espaço antes de qualquer teamfight acontecer.</strong></p>
+  </div>
+</div>
+</section>
+
+<footer>
+  <div class="foot-brand">O Paradoxo da FURIA</div>
+  <div class="foot-meta">Análise Técnica · Parte I de II<br>Bruno Bassetto · Março 2026 · Oracle's Elixir</div>
+</footer>
+
+<script>
+/* ── Scroll reveal ── */
+const io = new IntersectionObserver(es => es.forEach(e => {
+  if(e.isIntersecting){ e.target.classList.add('v'); io.unobserve(e.target); }
+}), {threshold:.07});
+document.querySelectorAll('.r').forEach(el => io.observe(el));
+
+/* ── Animate hbars ── */
+const barIO = new IntersectionObserver(es => es.forEach(e => {
+  if(e.isIntersecting){
+    e.target.querySelectorAll('.hbar-fill').forEach(bar => {
+      const w = bar.dataset.w;
+      bar.style.width = '0%';
+      requestAnimationFrame(() => setTimeout(() => { bar.style.width = w + '%'; }, 80));
+    });
+    barIO.unobserve(e.target);
+  }
+}), {threshold:.25});
+document.querySelectorAll('.hbar-chart, #barBaseline, #barBaron').forEach(el => barIO.observe(el));
+barIO.observe(document.getElementById('barBaseline'));
+barIO.observe(document.getElementById('barBaron'));
+
+/* ── Gold Diff SVG ── */
+(function(){
+  const svg = document.getElementById('gdChart');
+  if(!svg) return;
+  const W=760, H=280, PAD={t:20,r:20,b:36,l:60};
+  const CW=W-PAD.l-PAD.r, CH=H-PAD.t-PAD.b;
+  const games=[
+    {label:'FR-S1',    data:[-269,-2866,-5979,-4484], win:false},
+    {label:'PO-R1 G1', data:[258,-201,-2200,191],     win:false},
+    {label:'PO-R1 G2', data:[-992,110,-1095,-2497],   win:false},
+    {label:'LB PO G1', data:[-1172,-2099,-2480,-834],  win:false},
+    {label:'LB PO G2', data:[1523,2659,4139,2252],     win:false},
+    {label:'LB PO G3', data:[854,993,697,3883],         win:true},
+    {label:'LB PO G4', data:[989,1553,508,741],         win:false},
+  ];
+  const avg=[226,1085,1831,2400];
+  const xs=[10,15,20,25];
+  const allV=[...games.flatMap(g=>g.data),...avg];
+  const minV=Math.min(...allV), maxV=Math.max(...allV);
+  const xScale=x=>PAD.l+((x-10)/15)*CW;
+  const yScale=v=>PAD.t+CH-(((v-minV)/(maxV-minV))*CH);
+  const y0=yScale(0);
+  let h='';
+  // zero line
+  h+=`<line x1="${PAD.l}" y1="${y0.toFixed(1)}" x2="${W-PAD.r}" y2="${y0.toFixed(1)}" stroke="rgba(0,0,0,.15)" stroke-width="1" stroke-dasharray="4,4"/>`;
+  // grid
+  [-6000,-4000,-2000,2000,4000].forEach(v=>{
+    const y=yScale(v);
+    h+=`<line x1="${PAD.l}" y1="${y.toFixed(1)}" x2="${W-PAD.r}" y2="${y.toFixed(1)}" stroke="rgba(0,0,0,.06)" stroke-width="1"/>`;
+    h+=`<text x="${PAD.l-6}" y="${(y+4).toFixed(1)}" text-anchor="end" font-size="9" fill="rgba(26,21,16,.4)">${v>0?'+'+v:v}</text>`;
+  });
+  // critical zone @15→@20
+  const x15=xScale(15), x20=xScale(20);
+  h+=`<rect x="${x15}" y="${PAD.t}" width="${x20-x15}" height="${CH}" fill="rgba(184,50,37,.05)"/>`;
+  h+=`<text x="${((x15+x20)/2).toFixed(1)}" y="${(PAD.t+10).toFixed(1)}" text-anchor="middle" font-size="8" fill="rgba(184,50,37,.5)" letter-spacing="1">ZONA CRÍTICA</text>`;
+  // avg line
+  const avgPts=xs.map((x,i)=>`${xScale(x).toFixed(1)},${yScale(avg[i]).toFixed(1)}`).join(' ');
+  h+=`<polyline points="${avgPts}" fill="none" stroke="rgba(138,94,0,.5)" stroke-width="1.5" stroke-dasharray="5,3"/>`;
+  // game lines
+  games.forEach(g=>{
+    const pts=xs.map((x,i)=>`${xScale(x).toFixed(1)},${yScale(g.data[i]).toFixed(1)}`).join(' ');
+    const color=g.win?'rgba(26,107,60,.85)':'rgba(184,50,37,.35)';
+    const sw=g.win?2.5:1.5;
+    h+=`<polyline points="${pts}" fill="none" stroke="${color}" stroke-width="${sw}"/>`;
+    xs.forEach((x,i)=>{
+      const cx=xScale(x).toFixed(1), cy=yScale(g.data[i]).toFixed(1);
+      if(g.win) h+=`<circle cx="${cx}" cy="${cy}" r="4" fill="rgba(26,107,60,.85)" stroke="var(--paper)" stroke-width="2"/>`;
+    });
+    // label last point
+    const lx=xScale(25), ly=yScale(g.data[3]);
+    h+=`<text x="${(lx+6).toFixed(1)}" y="${(ly+4).toFixed(1)}" font-size="8" fill="${g.win?'rgba(26,107,60,.9)':'rgba(26,21,16,.4)'}">${g.label}</text>`;
+  });
+  // x axis
+  xs.forEach(x=>{
+    h+=`<text x="${xScale(x).toFixed(1)}" y="${(H-PAD.b+16).toFixed(1)}" text-anchor="middle" font-size="9" fill="rgba(26,21,16,.5)">@${x}</text>`;
+  });
+  svg.innerHTML=h;
+})();
+</script>
+</body>
+</html>

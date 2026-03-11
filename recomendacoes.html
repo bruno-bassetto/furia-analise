@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Recomendações — Coaching Staff FURIA · CBLOL Cup 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --paper:    #f5f0e8;
+  --paper2:   #ede7da;
+  --paper3:   #e6dfd0;
+  --paper4:   #ddd5c2;
+  --paper5:   #cfc6b0;
+  --ink:      #1a1510;
+  --ink2:     #2e2820;
+  --dim:      #7a6f5e;
+  --muted:    #a89f8e;
+  --hairline: rgba(26,21,16,.10);
+  --hairline2:rgba(26,21,16,.18);
+  --red:      #b83225;
+  --red2:     #d44033;
+  --red-tint: rgba(184,50,37,.08);
+  --red-mid:  rgba(184,50,37,.15);
+  --blue:     #1e4fa8;
+  --blue-tint:rgba(30,79,168,.08);
+  --blue-mid: rgba(30,79,168,.14);
+  --gold:     #8a5e00;
+  --gold-tint:rgba(138,94,0,.08);
+  --gold-mid: rgba(138,94,0,.14);
+  --green:    #1a6b3c;
+  --green-tint:rgba(26,107,60,.08);
+  --green-mid: rgba(26,107,60,.14);
+  --f-display:'Playfair Display', Georgia, serif;
+  --f-body:   'DM Sans', sans-serif;
+  --f-mono:   'DM Mono', monospace;
+}
+
+html { scroll-behavior: smooth; }
+body { background: var(--paper); color: var(--ink); font-family: var(--f-body); font-size: 15px; line-height: 1.7; overflow-x: hidden; }
+
+.r { opacity: 0; transform: translateY(18px); transition: opacity .55s ease, transform .55s ease; }
+.r.v { opacity: 1; transform: translateY(0); }
+
+/* ── HERO ── */
+.hero {
+  min-height: 100vh; position: relative; overflow: hidden;
+  display: flex; flex-direction: column; justify-content: flex-end;
+  padding: 0 7vw 8vw;
+}
+.hero-bg {
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 70% 60% at 80% 20%, rgba(184,50,37,.07) 0%, transparent 55%),
+    radial-gradient(ellipse 50% 50% at 10% 80%, rgba(30,79,168,.05) 0%, transparent 50%);
+}
+.hero-grid {
+  position: absolute; inset: 0;
+  background-image: linear-gradient(var(--hairline) 1px, transparent 1px), linear-gradient(90deg, var(--hairline) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+.hero-num {
+  position: absolute; right: 7vw; top: 50%; transform: translateY(-50%);
+  font-family: var(--f-display); font-size: clamp(12rem,22vw,20rem);
+  font-weight: 900; font-style: italic;
+  color: transparent; -webkit-text-stroke: 1px rgba(26,21,16,.07);
+  line-height: 1; user-select: none; pointer-events: none;
+}
+.hero-pill {
+  position: absolute; top: 36px; right: 7vw;
+  font-family: var(--f-mono); font-size: 9px; letter-spacing: .18em;
+  color: var(--muted); border: 1px solid var(--hairline2); padding: 7px 14px;
+}
+.hero-c { position: relative; z-index: 2; }
+.hero-eyebrow {
+  font-family: var(--f-mono); font-size: 9px; letter-spacing: .22em; text-transform: uppercase;
+  color: var(--muted); margin-bottom: 20px;
+  display: flex; align-items: center; gap: 10px;
+  opacity: 0; animation: fadeUp .7s .1s forwards;
+}
+.hero-eyebrow::before { content:''; display:block; width:28px; height:1px; background:var(--red); }
+.hero-part {
+  font-family: var(--f-body); font-weight: 300; font-size: 13px;
+  letter-spacing: .08em; color: var(--dim); text-transform: uppercase; margin-bottom: 16px;
+  opacity: 0; animation: fadeUp .7s .2s forwards;
+}
+.hero-title {
+  font-family: var(--f-display); font-weight: 900;
+  font-size: clamp(5rem, 12vw, 11rem);
+  line-height: .88; letter-spacing: -.02em; margin-bottom: 36px;
+  opacity: 0; animation: fadeUp .7s .35s forwards;
+}
+.hero-title .l1 { display: block; color: var(--ink); }
+.hero-title .l2 { display: block; color: transparent; -webkit-text-stroke: 2px var(--red); font-style: italic; }
+.hero-sub {
+  max-width: 480px; font-size: 14px; color: var(--dim); line-height: 1.75;
+  margin-bottom: 36px;
+  opacity: 0; animation: fadeUp .7s .5s forwards;
+}
+.hero-dest {
+  display: inline-flex; align-items: center; gap: 12px;
+  border: 1px solid rgba(184,50,37,.25); background: var(--red-tint);
+  padding: 10px 20px;
+  font-family: var(--f-mono); font-size: 10px; letter-spacing: .12em; color: var(--red);
+  opacity: 0; animation: fadeUp .7s .65s forwards;
+}
+.hero-dest::before { content: '→'; }
+.hero-bottom { position: absolute; bottom: 0; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, var(--red) 0%, transparent 50%); }
+
+@keyframes fadeUp { from { opacity:0; transform:translateY(16px); } to { opacity:1; transform:translateY(0); } }
+
+/* ── LAYOUT ── */
+.wrap { max-width: 1100px; margin: 0 auto; padding: 0 7vw; }
+.s { padding: 88px 0; border-bottom: 1px solid var(--hairline); }
+.s:last-of-type { border-bottom: none; }
+.s-head { display: grid; grid-template-columns: 52px 1fr; gap: 24px; align-items: start; margin-bottom: 52px; }
+.s-num { font-family: var(--f-mono); font-size: 10px; color: var(--muted); padding-top: 8px; letter-spacing: .1em; }
+.s-tag {
+  font-family: var(--f-mono); font-size: 8px; padding: 3px 10px; border-radius: 2px;
+  letter-spacing: .1em; text-transform: uppercase; display: inline-block; margin-bottom: 10px;
+}
+.st-cp { background: var(--red-tint); color: var(--red); }
+.st-mp { background: var(--blue-tint); color: var(--blue); }
+.st-syn { background: var(--green-tint); color: var(--green); }
+.s-title { font-family: var(--f-display); font-weight: 900; font-size: clamp(2rem,4vw,3rem); line-height: .96; letter-spacing: -.01em; }
+.s-title .acc-r { color: var(--red); }
+.s-title .acc-b { color: var(--blue); }
+.s-title .acc-g { color: var(--green); }
+.s-title em { font-style: italic; }
+.s-sub { margin-top: 10px; font-size: 13px; color: var(--dim); }
+
+.sec-label {
+  font-family: var(--f-mono); font-size: 9px; letter-spacing: .18em; text-transform: uppercase;
+  color: var(--muted); margin-bottom: 16px; margin-top: 40px;
+  display: flex; align-items: center; gap: 10px;
+}
+.sec-label::after { content:''; flex:1; height:1px; background:var(--hairline); }
+
+/* ── FUNDAMENTOS ── */
+.fund-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px,1fr)); gap: 1px; background: var(--hairline2); border: 1px solid var(--hairline2); margin: 28px 0; }
+.fund-item { background: var(--paper); padding: 20px; display: flex; gap: 16px; align-items: flex-start; transition: background .2s; }
+.fund-item:hover { background: var(--paper2); }
+.fn { font-family: var(--f-display); font-size: 2.4rem; font-weight: 900; color: var(--muted); line-height: 1; flex-shrink: 0; opacity: .4; }
+.ft { font-size: 13px; color: var(--dim); line-height: 1.55; }
+.ft strong { color: var(--ink); font-weight: 600; }
+
+/* ── REC CARDS ── */
+.rec-list { display: flex; flex-direction: column; gap: 2px; }
+.rec { background: var(--paper); border: 1px solid var(--hairline); overflow: hidden; transition: border-color .2s; }
+.rec:hover { border-color: var(--hairline2); }
+.rec.cp { border-left: 3px solid var(--red); }
+.rec.mp { border-left: 3px solid var(--blue); }
+.rec-head { display: grid; grid-template-columns: 72px 1fr 40px; cursor: pointer; user-select: none; }
+.rec-num-col {
+  background: var(--paper2); display: flex; align-items: center; justify-content: center;
+  border-right: 1px solid var(--hairline); padding: 22px 10px;
+}
+.rec-n { font-family: var(--f-display); font-size: 2.6rem; font-weight: 900; color: var(--muted); line-height: 1; font-style: italic; }
+.rec.cp .rec-n { color: var(--red); opacity: .6; }
+.rec.mp .rec-n { color: var(--blue); opacity: .6; }
+.rec-info { padding: 18px 22px; display: flex; flex-direction: column; gap: 5px; }
+.rec-tag-row { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.rec-tag { font-family: var(--f-mono); font-size: 8px; padding: 3px 8px; border-radius: 2px; letter-spacing: .1em; text-transform: uppercase; }
+.rt-cp { background: var(--red-tint); color: var(--red); }
+.rt-mp { background: var(--blue-tint); color: var(--blue); }
+.rec-area { font-family: var(--f-mono); font-size: 8px; color: var(--muted); letter-spacing: .07em; }
+.rec-title { font-size: 15px; font-weight: 600; color: var(--ink); line-height: 1.35; }
+.rec-scope { font-size: 11px; color: var(--muted); font-style: italic; }
+.rec-chev { display: flex; align-items: center; justify-content: center; color: var(--muted); font-size: 18px; transition: transform .3s; padding-right: 16px; }
+.rec.open .rec-chev { transform: rotate(180deg); }
+
+.rec-body { display: none; border-top: 1px solid var(--hairline); }
+.rec.open .rec-body { display: grid; grid-template-columns: 1fr 1fr; }
+.rec-ev { padding: 22px 24px; border-right: 1px solid var(--hairline); }
+.rec-act { padding: 22px 24px; background: var(--paper2); }
+.rb-label {
+  font-family: var(--f-mono); font-size: 8px; letter-spacing: .15em; text-transform: uppercase;
+  margin-bottom: 10px; padding: 3px 8px; border-radius: 2px; display: inline-block;
+}
+.ev-l { background: var(--red-tint); color: var(--red); }
+.act-l { background: var(--blue-tint); color: var(--blue); }
+.rb-text { font-size: 13px; color: var(--dim); line-height: 1.65; }
+.rb-text strong { color: var(--ink); font-weight: 600; }
+.rb-text .ev-s { color: var(--red); }
+.rb-text .act-s { color: var(--blue); }
+.metric-chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 14px; }
+.mc { font-family: var(--f-mono); font-size: 8.5px; padding: 4px 10px; border-radius: 2px; letter-spacing: .05em; }
+.mc-r { background: var(--red-tint); color: var(--red); }
+.mc-b { background: var(--blue-tint); color: var(--blue); }
+.mc-g { background: var(--green-tint); color: var(--green); }
+.mc-gold { background: var(--gold-tint); color: var(--gold); }
+
+/* ── SÍNTESE ── */
+.layers { display: grid; grid-template-columns: repeat(3,1fr); gap: 1px; background: var(--hairline2); border: 1px solid var(--hairline2); margin: 28px 0; }
+.layer { background: var(--paper); padding: 28px 22px; }
+.layer-num { font-family: var(--f-mono); font-size: 8.5px; color: var(--muted); letter-spacing: .12em; text-transform: uppercase; margin-bottom: 10px; }
+.layer-title { font-family: var(--f-display); font-size: 1.5rem; font-weight: 900; line-height: 1; margin-bottom: 14px; }
+.l1 .layer-title { color: var(--red); }
+.l2 .layer-title { color: var(--blue); }
+.l3 .layer-title { color: var(--green); }
+.layer-desc { font-size: 13px; color: var(--dim); line-height: 1.6; margin-bottom: 14px; }
+.layer-recs { font-family: var(--f-mono); font-size: 9px; color: var(--muted); letter-spacing: .08em; }
+
+/* ── QUICK REF TABLE ── */
+.tbl-wrap { overflow-x: auto; border: 1px solid var(--hairline2); margin: 16px 0; }
+table { width: 100%; border-collapse: collapse; font-size: 13px; }
+thead th { background: var(--paper2); padding: 11px 14px; text-align: left; font-family: var(--f-mono); font-size: 8.5px; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); border-bottom: 1px solid var(--hairline2); white-space: nowrap; }
+tbody td { padding: 10px 14px; border-bottom: 1px solid var(--hairline); color: var(--ink); vertical-align: middle; }
+tbody tr:last-child td { border-bottom: none; }
+tbody tr:hover td { background: var(--paper2); }
+.t-cp { background: var(--red-tint); color: var(--red); font-family: var(--f-mono); font-size: 8px; padding: 3px 8px; border-radius: 2px; letter-spacing: .08em; white-space: nowrap; }
+.t-mp { background: var(--blue-tint); color: var(--blue); font-family: var(--f-mono); font-size: 8px; padding: 3px 8px; border-radius: 2px; letter-spacing: .08em; white-space: nowrap; }
+.td-rn { font-family: var(--f-display); font-size: 1.3rem; font-weight: 900; color: var(--muted); font-style: italic; line-height: 1; }
+.td-title { font-weight: 600; font-size: 13px; }
+.td-scope { font-size: 11px; color: var(--muted); margin-top: 2px; }
+.td-ev { font-size: 12px; color: var(--dim); }
+
+/* ── ALERT ── */
+.alert { border-left: 3px solid var(--red); background: var(--red-tint); padding: 20px 24px; margin: 24px 0; border-radius: 0 4px 4px 0; }
+.alert.blue { border-color: var(--blue); background: var(--blue-tint); }
+.alert.gold { border-color: var(--gold); background: var(--gold-tint); }
+.alert.green { border-color: var(--green); background: var(--green-tint); }
+.alert-tag { font-family: var(--f-mono); font-size: 8.5px; letter-spacing: .15em; text-transform: uppercase; color: var(--red); margin-bottom: 8px; }
+.alert.blue .alert-tag { color: var(--blue); }
+.alert.gold .alert-tag { color: var(--gold); }
+.alert.green .alert-tag { color: var(--green); }
+.alert p { font-size: 14px; color: var(--dim); line-height: 1.65; }
+.alert p strong { color: var(--ink); }
+
+/* ── FINAL ── */
+.final-block {
+  background: var(--ink); color: var(--paper); padding: 56px 48px;
+  margin-top: 48px; position: relative; overflow: hidden;
+}
+.final-block::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  background: linear-gradient(90deg, var(--red), var(--blue), transparent);
+}
+.final-tag { font-family: var(--f-mono); font-size: 9px; letter-spacing: .2em; text-transform: uppercase; color: rgba(245,240,232,.4); margin-bottom: 20px; }
+.final-headline { font-family: var(--f-display); font-size: clamp(2rem, 4vw, 3.2rem); font-weight: 900; line-height: 1.05; margin-bottom: 24px; }
+.final-headline span { color: var(--red); font-style: italic; }
+.final-body { font-size: 14px; color: rgba(245,240,232,.65); line-height: 1.75; max-width: 680px; }
+.final-body strong { color: rgba(245,240,232,.9); }
+
+/* ── FOOTER ── */
+footer { background: var(--paper2); border-top: 1px solid var(--hairline2); padding: 48px 7vw; display: flex; justify-content: space-between; align-items: center; }
+.foot-brand { font-family: var(--f-display); font-size: 1.4rem; font-weight: 900; color: var(--ink); font-style: italic; }
+.foot-meta { font-family: var(--f-mono); font-size: 9px; color: var(--muted); letter-spacing: .1em; text-align: right; line-height: 1.7; }
+
+@media (max-width: 780px) {
+  .rec.open .rec-body { grid-template-columns: 1fr; }
+  .layers { grid-template-columns: 1fr; }
+  .final-block { padding: 36px 24px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ══════════ HERO ══════════ -->
+<header class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-num">II</div>
+  <div class="hero-pill">PARTE II DE II · COACHING STAFF</div>
+  <div class="hero-c">
+    <div class="hero-eyebrow">Relatório de Análise · CBLOL Cup 2026 · Bruno Bassetto</div>
+    <div class="hero-part">Coaching Staff —</div>
+    <h1 class="hero-title">
+      <span class="l1">Recomen</span>
+      <span class="l2">dações</span>
+    </h1>
+    <p class="hero-sub">7 recomendações baseadas em dados quantitativos e revisão qualitativa dos jogos. Sem suposições externas, cada ação tem sustentação específica nos dados.</p>
+    <div class="hero-dest">Destinatário: Coaching Staff FURIA · Março 2026</div>
+  </div>
+  <div class="hero-bottom"></div>
+</header>
+
+<!-- ══════════ 01 · FUNDAMENTOS ══════════ -->
+<section class="s">
+<div class="wrap">
+  <div class="s-head r">
+    <div class="s-num">01</div>
+    <div>
+      <div class="s-tag st-cp">Base analítica</div>
+      <div class="s-title">O que os <span class="acc-r">dados</span> dizem</div>
+      <div class="s-sub">5 fatos provados — base de cada recomendação</div>
+    </div>
+  </div>
+
+  <div class="fund-grid r">
+    <div class="fund-item">
+      <div class="fn">1</div>
+      <div class="ft"><strong>Baron = resultado em 7/7 jogos.</strong> A correlação é perfeita: RED venceu 6 Barons, corresponde às 6 derrotas da FURIA. O único Baron da FURIA = única vitória.</div>
+    </div>
+    <div class="fund-item">
+      <div class="fn">2</div>
+      <div class="ft"><strong>A FURIA não perde o early.</strong> GD@10 médio nas derrotas: +56. O colapso acontece entre @15 e @20, de −141 para −1184 de ouro médio. Não é falta de talento de early game.</div>
+    </div>
+    <div class="fund-item">
+      <div class="fn">3</div>
+      <div class="ft"><strong>A visão da FURIA supera a da RED em todos os 7 jogos</strong>, com margem de 1.2 a 1.65× em ward kills/min. O problema não é informação: é a decisão tomada com ela.</div>
+    </div>
+    <div class="fund-item">
+      <div class="fn">4</div>
+      <div class="ft"><strong>Tatu vence Curse em todos os 7 jogos.</strong> A RED vence apesar disso, o sistema de mid game compensa o elo mais fraco da liga. A FURIA não tem sistema equivalente.</div>
+    </div>
+    <div class="fund-item">
+      <div class="fn">5</div>
+      <div class="ft"><strong>JoJo é o 1º support da liga (nota 8.04), mas cai para 6.10 vs frosty</strong>, a maior queda contextual do elenco (−1.94). A causa é o matchup de pick, não o nível individual.</div>
+    </div>
+  </div>
+
+  <div class="alert green r">
+    <div class="alert-tag">Contexto geral do elenco</div>
+    <p>A FURIA tem <strong>todos os 5 jogadores entre os top-5 de suas respectivas lanes na liga</strong>. O problema não exige mudança de roster. Exige construção de sistema, pois a vantagem de ouro não se converte em Baron porque não existe um protocolo que transforme informação de visão em decisão coletiva coordenada.</p>
+  </div>
+</div>
+</section>
+
+<!-- ══════════ 02 · RECOMENDAÇÕES ══════════ -->
+<section class="s">
+<div class="wrap">
+  <div class="s-head r">
+    <div class="s-num">02</div>
+    <div>
+      <div class="s-title">As 7 <span class="acc-r">Reco</span><span class="acc-b">men</span>dações</div>
+      <div class="s-sub">Curto prazo · ação imediata · Médio prazo · construção de sistema</div>
+    </div>
+  </div>
+
+  <div class="rec-list r">
+
+    <!-- REC 01 -->
+    <div class="rec cp open">
+      <div class="rec-head" onclick="toggle(this.parentElement)">
+        <div class="rec-num-col"><div class="rec-n">01</div></div>
+        <div class="rec-info">
+          <div class="rec-tag-row"><span class="rec-tag rt-cp">Curto Prazo</span><span class="rec-area">VOD Review · Visão</span></div>
+          <div class="rec-title">Leitura coletiva do tipo de visão, ward convencional vs fontes passivas</div>
+          <div class="rec-scope">Responsabilidade: analista + todos os jogadores</div>
+        </div>
+        <div class="rec-chev">⌄</div>
+      </div>
+      <div class="rec-body">
+        <div class="rec-ev">
+          <div class="rb-label ev-l">Evidência</div>
+          <div class="rb-text">G1 dos playoffs: Tutsz movimentou-se por área marcada pelo <strong class="ev-s">Arongueijo</strong>, efeito passivo do objetivo neutro, não um ward. Foi pickoffado; teamfight consequente perdida. JoJo havia controlado bem a visão convencional até esse momento. A derrota foi causada por desrespeito a uma fonte de visão que não aparece no VSPM ou WK/min dos dados.</div>
+          <div class="metric-chips">
+            <div class="mc mc-r">G1: derrota por visão não convencional</div>
+            <div class="mc mc-gold">FURIA WK/min: 1.74 média (supera RED)</div>
+          </div>
+        </div>
+        <div class="rec-act">
+          <div class="rb-label act-l">O que fazer</div>
+          <div class="rb-text">Nas sessões de VOD review, focar sempre, mesmo que brevemente, em <strong class="act-s">identificar e nomear cada tipo de fonte de visão presente nos jogos vs RED</strong>: wards convencionais, control wards, visão de Arongueijo, câmera de objetivo morto, posicionamento de câmera do mapa. Construir linguagem comum entre os 5 jogadores para comunicação em jogo, para que as fontes de visão "ocultas" não peguem o time desprevenido. É importantíssimo o reforço da coach staff para fazer os jogadores respeitarem o time inimigo e fazer a passagem pelo caminho correto, por mais que <span style="color:var(--blue);font-weight:600">tenham certeza que o time inimigo não tem visão de sua passagem</span>. Sim, é algo bobo e óbvio, mas é justamente isso que torna esta prática essencial.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- REC 02 -->
+    <div class="rec cp">
+      <div class="rec-head" onclick="toggle(this.parentElement)">
+        <div class="rec-num-col"><div class="rec-n">02</div></div>
+        <div class="rec-info">
+          <div class="rec-tag-row"><span class="rec-tag rt-cp">Curto Prazo</span><span class="rec-area">Sistema · Baron</span></div>
+          <div class="rec-title">Protocolo explícito de pré-requisitos para iniciar o Baron</div>
+          <div class="rec-scope">Responsabilidade: head coach + shotcaller (Tatu)</div>
+        </div>
+        <div class="rec-chev">⌄</div>
+      </div>
+      <div class="rec-body">
+        <div class="rec-ev">
+          <div class="rb-label ev-l">Evidência</div>
+          <div class="rb-text">A FURIA conquistou o Baron em <strong class="ev-s">1 de 7 jogos</strong>, o único vencido. O G3 mostrou que a sequência correta é possível: JoJo disputou fisicamente a visão → interceptou frosty → pickoff → Baron com vantagem numérica. Mas foi resultado de leitura individual, não de protocolo definido. PO G2: FURIA com <strong class="ev-s">+4.139 de ouro cedeu o Baron</strong>.</div>
+          <div class="metric-chips">
+            <div class="mc mc-r">Baron FURIA: 1/7</div>
+            <div class="mc mc-r">Baron RED: 6/7</div>
+            <div class="mc mc-g">G3: único com pré-req correto</div>
+          </div>
+        </div>
+        <div class="rec-act">
+          <div class="rb-label act-l">O que fazer</div>
+          <div class="rb-text">Definir formalmente: <strong class="act-s">qual é o estado mínimo de visão no pit e nos acessos, quem cobre cada quadrante, e qual é a condição que autoriza o início do Baron</strong>. Sem protocolo, a sequência certa acontece organicamente em 1 de cada 4 jogos de playoff, os dados mostram isso. Outro reforço óbvio, mas que se torna ainda mais necessário justamente pela baixa qualidade de scrims da nossa região no mid/late game.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- REC 03 -->
+    <div class="rec cp">
+      <div class="rec-head" onclick="toggle(this.parentElement)">
+        <div class="rec-num-col"><div class="rec-n">03</div></div>
+        <div class="rec-info">
+          <div class="rec-tag-row"><span class="rec-tag rt-cp">Curto Prazo</span><span class="rec-area">Draft · Preparação</span></div>
+          <div class="rec-title">Mapear e priorizar bans nos picks de frosty que dominam espaço a distância</div>
+          <div class="rec-scope">Responsabilidade: analista de draft + head coach</div>
+        </div>
+        <div class="rec-chev">⌄</div>
+      </div>
+      <div class="rec-body">
+        <div class="rec-ev">
+          <div class="rb-label ev-l">Evidência</div>
+          <div class="rb-text">frosty é o <strong class="ev-s">2º melhor support da liga (nota 7.93)</strong>, com desvio 1.33, alta consistência. Sua nota mais baixa em todos os confrontos é <strong class="ev-s">6.26 (PO-R1 G1)</strong> e <strong class="ev-s">6.89 (LB PO G3)</strong>, exatamente o jogo em que JoJo joga Alistar e disputa fisicamente o espaço. Com Karma (G1), expulsou Rakan das áreas de visão a distância antes de qualquer teamfight.</div>
+          <div class="metric-chips">
+            <div class="mc mc-r">frosty nota geral: 7.93</div>
+            <div class="mc mc-r">frosty vs FURIA: 7.93 mediana</div>
+            <div class="mc mc-g">G3 (Alistar vs Bard): nota 6.89</div>
+          </div>
+        </div>
+        <div class="rec-act">
+          <div class="rb-label act-l">O que fazer</div>
+          <div class="rb-text">Levantar o pool completo de picks de controle de espaço de frosty e <strong class="act-s">incluir ao menos um como ban prioritário</strong> nos jogos vs RED, especialmente Karma. O objetivo não é eliminar o impacto de frosty, é forçar um pick que JoJo consiga contestar fisicamente no mid game. JoJo é o protagonista oculto da FURIA: a melhora de conforto dele na série é um fator definitivo vs RED (e outros times "bagunçados"/agressivos) que muitas vezes pode passar despercebido, pois sua nota menor nos confrontos indica uma dificuldade de jogo escondida pela sua alta performance vista por fora.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- REC 04 -->
+    <div class="rec mp">
+      <div class="rec-head" onclick="toggle(this.parentElement)">
+        <div class="rec-num-col"><div class="rec-n">04</div></div>
+        <div class="rec-info">
+          <div class="rec-tag-row"><span class="rec-tag rt-mp">Médio Prazo</span><span class="rec-area">Transição · Macro</span></div>
+          <div class="rec-title">Protocolo de transição early → mid: como converter GD@15 positivo em posicionamento de mapa</div>
+          <div class="rec-scope">Responsabilidade: head coach + scrims temáticos</div>
+        </div>
+        <div class="rec-chev">⌄</div>
+      </div>
+      <div class="rec-body">
+        <div class="rec-ev">
+          <div class="rb-label ev-l">Evidência</div>
+          <div class="rb-text">Nas derrotas vs RED: GD@10 médio = <strong class="ev-s">+56</strong> → GD@15 = <strong class="ev-s">−141</strong> → GD@20 = <strong class="ev-s">−1.184</strong>. A queda de +56 para −141 em 5 minutos não é coincidência, é o momento em que a RED executa seu sistema de mid game e a FURIA não tem resposta estruturada. A FURIA tem os recursos para dominar esse período; não tem o protocolo.</div>
+          <div class="metric-chips">
+            <div class="mc mc-b">GD@10 médio (derrotas): +56</div>
+            <div class="mc mc-r">GD@15 médio (derrotas): −141</div>
+            <div class="mc mc-r">GD@20 médio (derrotas): −1.184</div>
+          </div>
+        </div>
+        <div class="rec-act">
+          <div class="rb-label act-l">O que fazer</div>
+          <div class="rb-text">Scrims temáticos com foco específico no período 14–20 min: <strong class="act-s">como a vantagem de lanes se converte em pressão de mapa antes do Baron aparecer</strong>. Onde posicionar cada jogador, qual objetivo priorizar, como a visão conquistada no early deve guiar o posicionamento no mid. O indicador de sucesso será visível no dado: o colapso entre @15 e @20 vai diminuir. Mais uma recomendação que a obviedade torna ainda maior a necessidade de ser realizada.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- REC 05 -->
+    <div class="rec mp">
+      <div class="rec-head" onclick="toggle(this.parentElement)">
+        <div class="rec-num-col"><div class="rec-n">05</div></div>
+        <div class="rec-info">
+          <div class="rec-tag-row"><span class="rec-tag rt-mp">Médio Prazo</span><span class="rec-area">Conhecimento · Objetivos</span></div>
+          <div class="rec-title">Incluir fontes de visão não convencionais na preparação de objetivos</div>
+          <div class="rec-scope">Responsabilidade: analista + revisão de VODs de objetivos</div>
+        </div>
+        <div class="rec-chev">⌄</div>
+      </div>
+      <div class="rec-body">
+        <div class="rec-ev">
+          <div class="rb-label ev-l">Evidência</div>
+          <div class="rb-text">G1 dos playoffs: a visão do Arongueijo não é um ward, é uma fonte passiva criada pelo objetivo neutro que persiste no mapa. Tutsz não reconheceu a cobertura, movimentou-se pela área e foi pickoffado. Esse tipo de informação <strong class="ev-s">não aparece nas estatísticas de visão</strong> e não é capturado pelo ward kills da FURIA (que supera a RED em todos os jogos).</div>
+          <div class="metric-chips">
+            <div class="mc mc-r">G1: pickoff por visão do Arongueijo</div>
+            <div class="mc mc-gold">Não capturado por WK/min</div>
+          </div>
+        </div>
+        <div class="rec-act">
+          <div class="rb-label act-l">O que fazer</div>
+          <div class="rb-text">Continuando o raciocínio do tópico 01, incluir na preparação pré-jogo uma checklist de <strong class="act-s">todas as fontes de visão ativas no mapa além de wards</strong>: câmera de Arongueijo, visão de câmera de objetivo morto, visão de unidades de objetivos. Pequeno custo de preparação, elimina uma categoria inteira de derrota.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- REC 06 -->
+    <div class="rec mp">
+      <div class="rec-head" onclick="toggle(this.parentElement)">
+        <div class="rec-num-col"><div class="rec-n">06</div></div>
+        <div class="rec-info">
+          <div class="rec-tag-row"><span class="rec-tag rt-mp">Médio Prazo</span><span class="rec-area">Sistema · Mid game</span></div>
+          <div class="rec-title">Construir sistema de Baron independente do estado das lanes</div>
+          <div class="rec-scope">Responsabilidade: head coach + scrims de conversão</div>
+        </div>
+        <div class="rec-chev">⌄</div>
+      </div>
+      <div class="rec-body">
+        <div class="rec-ev">
+          <div class="rb-label ev-l">Evidência</div>
+          <div class="rb-text">A RED venceu o Baron com GD@15 de <strong class="ev-s">−2.659</strong>, com Curse −1.421, fNb −1.248 e Kaze −1.013 nas lanes, três jogadores negativos. O sistema funcionou mesmo assim. A referência mais clara: <strong class="ev-s">LOUD tem baron rate de 0.906 contra a RED sendo o time com pior GD@15 médio da região (−1505)</strong>. Baron independe de early game quando o sistema existe.</div>
+          <div class="metric-chips">
+            <div class="mc mc-r">RED Baron + GD@15 −2.659</div>
+            <div class="mc mc-gold">LOUD BR vs RED: 0.906</div>
+            <div class="mc mc-r">FURIA BR vs RED: 0.143</div>
+          </div>
+        </div>
+        <div class="rec-act">
+          <div class="rb-label act-l">O que fazer</div>
+          <div class="rb-text">Trabalhar cenários específicos de Baron em scrims a partir de situações neutras e de desvantagem, não apenas quando a FURIA está ganhando. <strong class="act-s">Converter gold diff em posicionamento de mapa de forma proativa</strong>, independente do estado de cada lane. O colapso @15→@20 vai diminuir quando o sistema estiver consolidado.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- REC 07 -->
+    <div class="rec mp">
+      <div class="rec-head" onclick="toggle(this.parentElement)">
+        <div class="rec-num-col"><div class="rec-n">07</div></div>
+        <div class="rec-info">
+          <div class="rec-tag-row"><span class="rec-tag rt-mp">Médio Prazo</span><span class="rec-area">Desenvolvimento · JoJo</span></div>
+          <div class="rec-title">Desenvolver o time para uma melhor adaptação de decisão através dos picks de JoJo</div>
+          <div class="rec-scope">Responsabilidade: coach de lane + JoJo</div>
+        </div>
+        <div class="rec-chev">⌄</div>
+      </div>
+      <div class="rec-body">
+        <div class="rec-ev">
+          <div class="rb-label ev-l">Evidência</div>
+          <div class="rb-text">JoJo é o <strong class="ev-s">1º support da liga (nota 8.04, desvio 1.71)</strong>. Sua queda para 6.10 nos confrontos vs frosty (−1.94) é a maior queda contextual do elenco, com causa identificada: não é limitação de nível, é limitação de pick pool. <strong>Com Alistar (G3)</strong>: disputou fisicamente a visão → interceptou frosty → pickoff → Baron → vitória. Com Rakan, Nami e Milio: a disputa de visão foi resolvida pela RED antes das teamfights.</div>
+          <div class="metric-chips">
+            <div class="mc mc-g">JoJo nota geral: 8.04 (1º sup da liga)</div>
+            <div class="mc mc-r">JoJo vs frosty: 6.10 mediana (−1.94)</div>
+            <div class="mc mc-g">Alistar G3: única derrota de frosty</div>
+          </div>
+        </div>
+        <div class="rec-act">
+          <div class="rb-label act-l">O que fazer</div>
+          <div class="rb-text">Avaliar e desenvolver intencionalmente a profundidade de JoJo em <strong class="act-s">suportes tank engajadores (Alistar, Leona, Rell)</strong> para que essa opção esteja disponível quando o draft permitir, não apenas ocasionalmente. O G3 prova que JoJo executa corretamente com esse tipo de pick. JoJo é muito bom utilizando suporte peel e isso deve continuar sendo aproveitado, porém é necessário que ele, juntamente ao time, trabalhem mais a forma de controle de visão e de como jogar em cima dela quando ele utiliza estes tipos de picks, pois as funções de preparações para objetivo mudam drasticamente de tank para peel, o que mais uma vez (e eu juro que é a última vez que digo isso) é tão óbvio que pode acabar passando batido já que <span style="color:var(--blue);font-weight:600">todo mundo já sabe disso</span>.</div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /rec-list -->
+</div>
+</section>
+
+<!-- ══════════ 03 · SÍNTESE ══════════ -->
+<section class="s">
+<div class="wrap">
+  <div class="s-head r">
+    <div class="s-num">03</div>
+    <div>
+      <div class="s-tag st-syn">Síntese</div>
+      <div class="s-title">As 3 <span class="acc-g">Camadas</span> do problema</div>
+      <div class="s-sub">Como as 7 recomendações se organizam para resolver o paradoxo</div>
+    </div>
+  </div>
+
+  <div class="layers r">
+    <div class="layer l1">
+      <div class="layer-num">Camada 1 · Draft</div>
+      <div class="layer-title">DRAFT</div>
+      <div class="layer-desc">Remover os picks de frosty que criam assimetria na disputa de visão antes do Baron chegar no mapa.</div>
+      <div class="layer-recs">→ Rec. 03</div>
+    </div>
+    <div class="layer l2">
+      <div class="layer-num">Camada 2 · Decisão</div>
+      <div class="layer-title">DECISÃO COLETIVA</div>
+      <div class="layer-desc">Construir sistema que traduza visão conquistada em decisões de movimentação coerentes e pré-requisitos claros para Baron.</div>
+      <div class="layer-recs">→ Rec. 01 · 02 · 04</div>
+    </div>
+    <div class="layer l3">
+      <div class="layer-num">Camada 3 · Conhecimento</div>
+      <div class="layer-title">CONHECIMENTO</div>
+      <div class="layer-desc">Eliminar lacunas específicas: visão não convencional, sistema de conversão de vantagem e profundidade de pool no suporte.</div>
+      <div class="layer-recs">→ Rec. 05 · 06 · 07</div>
+    </div>
+  </div>
+
+  <div class="sec-label r">Referência rápida — todas as recomendações</div>
+  <div class="tbl-wrap r">
+    <table>
+      <thead><tr><th>#</th><th>Recomendação</th><th>Prazo</th><th>Evidência-chave</th></tr></thead>
+      <tbody>
+        <tr><td><div class="td-rn">01</div></td><td><div class="td-title">Leitura coletiva do tipo de visão</div><div class="td-scope">VOD review · todos os jogadores</div></td><td><span class="t-cp">Curto</span></td><td class="td-ev">G1 perdido por visão do Arongueijo, FURIA supera RED em WK/min mas não reconhece fonte não convencional</td></tr>
+        <tr><td><div class="td-rn">02</div></td><td><div class="td-title">Protocolo de pré-requisitos para Baron</div><div class="td-scope">Head coach + shotcaller (Tatu)</div></td><td><span class="t-cp">Curto</span></td><td class="td-ev">Baron = resultado · 7/7 jogos · correlação perfeita</td></tr>
+        <tr><td><div class="td-rn">03</div></td><td><div class="td-title">Bans nos picks de controle do frosty</div><div class="td-scope">Draft prep · analista</div></td><td><span class="t-cp">Curto</span></td><td class="td-ev">frosty 7.93 vs FURIA · nota mais baixa no único jogo em que JoJo joga Alistar</td></tr>
+        <tr><td><div class="td-rn">04</div></td><td><div class="td-title">Protocolo de transição early → mid</div><div class="td-scope">Scrims temáticos</div></td><td><span class="t-mp">Médio</span></td><td class="td-ev">GD@10 +56 → GD@15 −141 → GD@20 −1.184 nas derrotas</td></tr>
+        <tr><td><div class="td-rn">05</div></td><td><div class="td-title">Visão não convencional no treinamento</div><div class="td-scope">Revisão de objectives</div></td><td><span class="t-mp">Médio</span></td><td class="td-ev">G1: pickoff por visão do Arongueijo, não capturado pelos dados de visão</td></tr>
+        <tr><td><div class="td-rn">06</div></td><td><div class="td-title">Sistema de Baron independente das lanes</div><div class="td-scope">Scrims de conversão</div></td><td><span class="t-mp">Médio</span></td><td class="td-ev">RED venceu Baron com −2.659 GD@15 · LOUD baron rate 0.906 vs RED</td></tr>
+        <tr><td><div class="td-rn">07</div></td><td><div class="td-title">Pool de JoJo em suportes proativos</div><div class="td-scope">Coach de lane</div></td><td><span class="t-mp">Médio</span></td><td class="td-ev">Alistar = única derrota de frosty na disputa de visão = única vitória da série · JoJo nota 8.04 geral</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="final-block r">
+    <div class="final-tag">◉ Conclusão Final</div>
+    <div class="final-headline">A FURIA já tem o early game.<br><span>Precisa construir o que vem depois.</span></div>
+    <p class="final-body">Nenhuma dessas recomendações exige mudança de roster ou identidade de jogo. O elenco é de alto nível, com <strong>todos os 5 jogadores entre os top-5 de suas respectivas lanes</strong>. Tatu venceu Curse em todos os 7 jogos. JoJo é o melhor support da liga. O problema é sistêmico: a vantagem de ouro não se converte em controle de Baron porque não existe um protocolo que transforme informação de visão em decisão coletiva coordenada. <strong>O G3 prova que a FURIA consegue executar o sistema correto, e ele precisa se tornar padrão, não exceção.</strong></p>
+  </div>
+</div>
+</section>
+
+<footer>
+  <div class="foot-brand">O Paradoxo da FURIA</div>
+  <div class="foot-meta">Recomendações · Parte II de II<br>Bruno Bassetto · Março 2026</div>
+</footer>
+
+<script>
+const io = new IntersectionObserver(es => es.forEach(e => {
+  if(e.isIntersecting){ e.target.classList.add('v'); io.unobserve(e.target); }
+}), {threshold:.07});
+document.querySelectorAll('.r').forEach(el => io.observe(el));
+
+function toggle(rec) { rec.classList.toggle('open'); }
+</script>
+</body>
+</html>
